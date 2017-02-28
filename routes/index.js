@@ -23,4 +23,10 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/login', function(req, res) {
+    res.render('login', { title: 'login' });
+});
+
+
+
 module.exports = router;
