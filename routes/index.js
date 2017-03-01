@@ -24,7 +24,10 @@ router.get('/', function(req, res) {
 });
 
 router.get('/login', function(req, res) {
-    res.render('login', { title: 'login' });
+    res.render('login', {
+      title: 'login' ,
+      script: '<script type="text/javascript" src="/js/login.js"></script>'
+    });
 });
 
 

@@ -7,10 +7,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 var users = require('./routes/user');
-
+var api = require('./routes/api');
 var app = express();
 
 var env = process.env.NODE_ENV || 'development';
@@ -26,6 +27,18 @@ app.engine('handlebars', exphbs({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 
+// use session
+app.use(session({
+  secret: 'a19584e5-a16d-489c-9ae5-a38ecd2d7c99',
+  resave: true,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: false,
+    maxAge: 1000 * 60 * 60 * 24
+  }
+}));
+
+
 // app.use(favicon(__dirname + '/public/img/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -37,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-
+app.use('/api', api);
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
