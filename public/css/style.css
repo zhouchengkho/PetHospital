@@ -329,7 +329,7 @@ label {
     margin: 1em 0;
 }
 .about {
-	padding:5em 0;
+	padding:2em 0;
 }
 .abt-lft {
     float: left;
@@ -550,13 +550,13 @@ figure.effect-apollo:hover p {
 	transition: all 0.4s ease-in-out;
 }
 .ch-img-1 {
-	background-image: url(./../img/pic1.jpg);
+	background-image: url(./../img/reception.jpg);
 }
 .ch-img-2 {
-	background-image: url(./../img/pic2.jpg);
+	background-image: url(./../img/assistant.jpg);
 }
 .ch-img-3 {
-	background-image: url(./../img/pic3.jpg);
+	background-image: url(./../img/vet.jpg);
 }
 .ch-img-4 {
 	background-image: url(./../img/pic4.jpg);
@@ -587,6 +587,7 @@ figure.effect-apollo:hover p {
 	font-size: 22px;
 	margin: 0 30px;
 	padding: 65px 0 0 0;
+  padding-top: 180px;
 	height: 110px;
 	text-shadow:
 		0 0 1px #fff,
@@ -620,7 +621,7 @@ figure.effect-apollo:hover p {
 		inset 0 0 0 110px rgba(255, 195, 0, 0.59),
 		inset 0 0 0 16px #ffc300, 0 1px 2px #ffc300;
 }
-.ch-item:hover .ch-info {
+.ch-item .ch-info {
 	opacity: 1;
 	-webkit-transform: scale(1);
 	-moz-transform: scale(1);
@@ -912,7 +913,9 @@ i.te:hover {
     font-size: 1.5em;
 }
 .about {
-    padding: 3em 0;
+    /*padding: 3em 0;*/
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 .services {
     padding: 3em 0;
