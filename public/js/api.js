@@ -27,7 +27,7 @@ function API() {
       data: JSON.stringify(params),
       dataType: 'json'
     }).done(function(res){
-      console.log(res)
+      // console.log(res)
       if(res.status == 200)
         callback(null, res.data)
       else

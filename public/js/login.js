@@ -6,9 +6,10 @@ $(document).ready(function() {
 
   $('#login').on('click', function() {
     var params = {
-      username: $('.login-form #name').val(),
-      password: $('.login-form #name').val()
+      username: $('.login-form #user').val(),
+      password: $('.login-form #pass').val()
     }
+    // alert(JSON.stringify(params))
     API.login(params, function(err, result){
       if(err)
         alert('login fail')

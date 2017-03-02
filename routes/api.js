@@ -3,7 +3,7 @@
  */
 var express = require('express');
 var router = express.Router();
-
+var uuid = require('uuid');
 /** API **/
 
 /**
@@ -35,12 +35,23 @@ var router = express.Router();
  *
  */
 router.post('/login', function(req, res) {
+
+  req.session.token = uuid.v4()
+  req.session.username = req.body.username;
+  req.session.save()
+  // console.log(req.sessionID)
+  // console.log(req.session.cookie)
   res.json({
     status: 200,
     data: {
-      token: 'some_token',
       message: 'Login Success'
     }
+  })
+})
+
+router.get('/test', function(req, res) {
+  res.json({
+    session: req.session
   })
 })
 

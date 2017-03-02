@@ -13,7 +13,7 @@ var routes = require('./routes/index');
 var users = require('./routes/user');
 var api = require('./routes/api');
 var app = express();
-
+var uuid = require('uuid');
 var env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
 app.locals.ENV_DEVELOPMENT = env == 'development';
@@ -29,6 +29,9 @@ app.set('view engine', 'handlebars');
 
 // use session
 app.use(session({
+  genid: function(req) {
+    return uuid.v4() // use UUIDs for session IDs
+  },
   secret: 'a19584e5-a16d-489c-9ae5-a38ecd2d7c99',
   resave: true,
   saveUninitialized: false,
