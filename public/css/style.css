@@ -734,6 +734,11 @@ i.g-1{
     margin: 0 0 1.5em;
     text-align: center;
 }
+
+.about h6 {
+  margin-bottom: 20px;
+}
+
 .footer p {
     color:#4D96E4;
     font-size: 1em;
@@ -1229,6 +1234,8 @@ i.te:hover {
     font-size: 2em;
     margin: 0 0 0.5em;
 }
+
+
 .about h3 {
     font-size: 1.39em;
 }
