@@ -14,8 +14,12 @@ router.get('/', function (req, res) {
     });
 });
 
-router.get('/case', function (req, res) {
+router.get("/case", function (req, res) {
     res.render('case');
+})
+
+router.get('/list_case', function (req, res) {
+    res.render('list_case');
 });
 router.get('/learn', function (req, res) {
     res.render('learn')

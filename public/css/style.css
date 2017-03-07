@@ -58,7 +58,7 @@ label {
     border: none ! important;
 }
 .navbar-default .navbar-nav > li > a {
-    color: #204e7f;
+    color: #111f33;
     font-size: 1.1em;
     font-weight: 700;
 }
@@ -130,7 +130,7 @@ label {
 	left: 0;
 	border: none;
 	outline: none;
-	background: #204e7f;
+	background: #111f33;
 	width: 100%;
 	height: 60px;
 	margin: 0;
@@ -196,7 +196,7 @@ label {
     width: 50%;
     margin:10em 0 0;
     text-align: left;
-    background-color: #204e7f;
+    background-color: #111f33;
 }
 /*-- header --*/
 .banner {
@@ -257,7 +257,7 @@ label {
   bottom: 0;
   left: 0;
   right: 0;
-  background: #204e7f;
+  background: #111f33;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
   -webkit-transform-origin: 50%;
@@ -297,7 +297,7 @@ label {
 }
 .services {
     padding: 5em 0;
-    background-color:#204e7f;
+    background-color:#111f33;
 }
 /*-- services --*/
 /*-- about --*/
@@ -317,7 +317,7 @@ label {
 }
 .about h4{
     font-size: 1.5em;
-    color: #204e7f;
+    color: #111f33;
     font-weight: 700;
     font-family: 'Antic', sans-serif;
     margin:0;
@@ -363,7 +363,7 @@ label {
     vertical-align: middle;
 }
 .about li a,.insurance li a {
-    color: #204e7f;
+    color: #111f33;
     font-size: 1em;
     text-decoration: none;
 	vertical-align: middle;
@@ -392,7 +392,7 @@ label {
 }
 .insurance h4 {
     font-size: 1.5em;
-    color: #204e7f;
+    color: #111f33;
     font-weight: 700;
     font-family: 'Antic', sans-serif;
     margin: 1em 0 0;
@@ -410,7 +410,7 @@ label {
 /*--gallery-starts--*/
 .gallery {
     padding: 5em 0;
-    background-color: #204e7f;
+    background-color: #111f33;
 }
 .gallery-top{
 	text-align:center;
@@ -724,7 +724,7 @@ i.g-1{
 }
 .footer {
     padding: 5em 0 1em;
-    background-color: #204e7f;
+    background-color: #111f33;
 }
 .about h6, .services h6, .footer h6, .insurance h6, .ourteam h6, .gallery h6 {
     font-size: 3em;
@@ -788,7 +788,7 @@ svg:not(:root) {
 }
 svg#stamp {
     height: 50px;
-    background-color: #204e7f;
+    background-color: #111f33;
 }
 /*--stamp--*/
 .social li {
@@ -1048,16 +1048,16 @@ i.te:hover {
     float: left;
 }
 .navbar-default .navbar-toggle {
-    border-color: #204e7f;
+    border-color: #111f33;
 }
 .navbar-default .navbar-toggle .icon-bar {
-    background-color: #204e7f;
+    background-color: #111f33;
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
     background-color:#ffc300;
 }
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-    border-color: #204e7f;
+    border-color: #111f33;
     text-align: center;
 }
 }
