@@ -5,6 +5,7 @@ var express = require('express');
 var router = express.Router();
 var uuid = require('uuid');
 var request = require('request');
+var baseUrl = 'http://172.30.235.146:8080';
 /** API **/
 
 /**
@@ -105,24 +106,23 @@ router.get('/test', function(req, res) {
  *
  *
  */
-
-
-
-router.post('/admin/add', function(req, res) {
-  request.post({
-    url:'http://172.30.235.146:8080/admin',
-    form:{
+router.post('/user/add', function(req, res) {
+  var form = {
     operation: 'add',
     name: 'yo',
     password: 'haha'
-},
+  };
+  request.post({
+    url: baseUrl+'/user',
+    form: form,
     headers: {
-    "Content-Type": "text/html"
-  }}, function(err, httpResponse, body) {
-    console.log(err)
-    // console.log(httpResponse)
-    console.log(body)
+      "Content-Type": "text/html"
+    }}, function(err, httpResponse, body) {
     res.json(JSON.parse(body))
   })
 })
+
+
+
+
 module.exports = router;
