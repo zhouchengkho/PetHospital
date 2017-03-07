@@ -17,6 +17,7 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.1",
     "morgan": "^1.6.1",
+    "request": "^2.80.0",
     "serve-favicon": "^2.3.0",
     "uuid": "^3.0.1"
   },

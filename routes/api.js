@@ -4,6 +4,7 @@
 var express = require('express');
 var router = express.Router();
 var uuid = require('uuid');
+var request = require('request');
 /** API **/
 
 /**
@@ -104,4 +105,24 @@ router.get('/test', function(req, res) {
  *
  *
  */
+
+
+
+router.post('/admin/add', function(req, res) {
+  request.post({
+    url:'http://172.30.235.146:8080/admin',
+    form:{
+    operation: 'add',
+    name: 'yo',
+    password: 'haha'
+},
+    headers: {
+    "Content-Type": "text/html"
+  }}, function(err, httpResponse, body) {
+    console.log(err)
+    // console.log(httpResponse)
+    console.log(body)
+    res.json(JSON.parse(body))
+  })
+})
 module.exports = router;
