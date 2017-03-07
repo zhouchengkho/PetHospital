@@ -257,10 +257,14 @@
 
         for (var i = 0; i < table.length; i += 5) {
 
+
+            var bigbigElement = document.createElement('div');
+            bigbigElement.className = 'element';
+            bigbigElement.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+
             var bigElement = document.createElement('a');
-            bigElement.className = "element";
             bigElement.href = "http://www.w3school.com.cn";
-            bigElement.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+            bigbigElement.appendChild(bigElement);
 
             var element = document.createElement('div');
             bigElement.appendChild(element);
@@ -280,7 +284,7 @@
             details.innerHTML = table[i + 1] + '<br>' + table[i + 2];
             element.appendChild(details);
 
-            var object = new THREE.CSS3DObject(bigElement);
+            var object = new THREE.CSS3DObject(bigbigElement);
             object.position.x = Math.random() * 4000 - 2000;
             object.position.y = Math.random() * 4000 - 2000;
             object.position.z = Math.random() * 4000 - 2000;
