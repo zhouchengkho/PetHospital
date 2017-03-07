@@ -22,10 +22,11 @@ router.get('/', function (req, res) {
     res.render('index', {title: 'Express'});
 });
 
-res.render('login', {
-    title: 'login',
-    script: '<script type="text/javascript" src="/js/login.js"></script>'
-
+router.get('/', function (req, res) {
+    res.render('login', {
+        title: 'login',
+        script: '<script type="text/javascript" src="/js/login.js"></script>'
+    });
 });
 
 router.get('/case', function (req, res) {
