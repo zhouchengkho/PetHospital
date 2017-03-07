@@ -63,11 +63,8 @@ router.get('/learn/assistant', function (req, res) {
     res.render('assistant')
 })
 
-<<<<<<< HEAD
 router.get('/3d_guidance', function(req, res) {
   res.render('3d_guidance')
 
 })
-=======
->>>>>>> 4ada0f60c637566be23a41292014ddd16eeddcdb
 module.exports = router;
