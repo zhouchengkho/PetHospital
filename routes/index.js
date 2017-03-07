@@ -4,21 +4,6 @@ var router = express.Router();
 /* GET home page. */
 
 router.get('/', function (req, res) {
-    var data = {
-        title: 'Pet Hospital',
-        data: [
-            {
-                name: 'Cat',
-                treatment: 'Needle'
-            }, {
-                name: 'Dog',
-                treatment: 'Medicine'
-            }, {
-                name: 'Pig',
-                treatment: 'Kill'
-            }
-        ]
-    }
     res.render('index', {title: 'Express'});
 });
 
@@ -30,22 +15,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/case', function (req, res) {
-    var data = {
-        title: 'Pet Hospital',
-        data: [
-            {
-                name: 'Cat',
-                treatment: 'Needle'
-            }, {
-                name: 'Dog',
-                treatment: 'Medicine'
-            }, {
-                name: 'Pig',
-                treatment: 'Kill'
-            }
-        ]
-    }
-    res.render('case', {test: data});
+    res.render('case');
 });
 router.get('/learn', function (req, res) {
     res.render('learn')
