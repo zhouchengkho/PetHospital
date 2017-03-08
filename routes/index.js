@@ -37,8 +37,8 @@ router.get('/learn/assistant', function (req, res) {
     res.render('assistant')
 })
 
-router.get('/3d_guidance', function(req, res) {
-  res.render('3d_guidance')
+router.get('/profile', function(req, res) {
+  res.render('profile')
 
 })
 module.exports = router;

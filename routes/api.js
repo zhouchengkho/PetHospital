@@ -8,6 +8,12 @@ var request = require('request');
 var baseUrl = 'http://172.30.235.146:8080';
 /** API **/
 
+router.get('/test', function(req, res) {
+  res.json({
+    session: req.session
+  })
+})
+
 /**
  * @api {post} /api/login User Login
  * @apiName User Login
@@ -38,11 +44,12 @@ var baseUrl = 'http://172.30.235.146:8080';
  */
 router.post('/login', function(req, res) {
 
-  req.session.token = uuid.v4()
-  req.session.username = req.body.username;
+  console.log('logging in')
+  req.session.login = {
+    name: req.body.username,
+    token: uuid.v4()
+  }
   req.session.save()
-  // console.log(req.sessionID)
-  // console.log(req.session.cookie)
   res.json({
     status: 200,
     data: {
@@ -51,11 +58,6 @@ router.post('/login', function(req, res) {
   })
 })
 
-router.get('/test', function(req, res) {
-  res.json({
-    session: req.session
-  })
-})
 
 /**
  * @api {post} /api/user User Operation
@@ -82,9 +84,9 @@ router.get('/test', function(req, res) {
  *  "operation": "update",
  *  "token": "wangxiaodui's working token"
  *  "name": "wangpiaoliang",
- *  "new-name": "wangxiaodui",
- *  "new-password": "new pass",
- *  "new-role": "admin" // this should be optional
+ *  "new_name": "wangxiaodui",
+ *  "new_password": "new pass",
+ *  "new_role": "admin" // this should be optional
  * }
  *
  * @apiSuccessExample Success-Response
@@ -122,7 +124,35 @@ router.post('/user/add', function(req, res) {
   })
 })
 
+router.post('/user/delete', function(req, res) {
+  var form = {
+    operation: 'delete',
+    name: 'yo'
+  };
+  request.post({
+    url: baseUrl+'/user',
+    form: form,
+    headers: {
+      "Content-Type": "text/html"
+    }}, function(err, httpResponse, body) {
+    res.json(JSON.parse(body))
+  })
+})
 
-
-
+router.post('/user/update', function(req, res) {
+  var form = {
+    operation: 'update',
+    name: 'wangpiaoliang',
+    new_name: 'shh',
+    new_password: '11111'
+  };
+  request.post({
+    url: baseUrl+'/user',
+    form: form,
+    headers: {
+      "Content-Type": "text/html"
+    }}, function(err, httpResponse, body) {
+    res.json(JSON.parse(body))
+  })
+})
 module.exports = router;
