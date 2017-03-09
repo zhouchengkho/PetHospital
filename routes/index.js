@@ -37,8 +37,18 @@ router.get('/learn/assistant', function (req, res) {
     res.render('assistant')
 })
 
-router.get('/profile', function(req, res) {
-  res.render('profile')
+router.get('/profile', function (req, res) {
+    res.render('profile')
 
 })
+
+router.get('/list_disease', function (req, res) {
+    res.render('list_disease')
+})
+
+router.get('/disease', function (req, res) {
+    res.render('disease')
+})
+
+
 module.exports = router;
