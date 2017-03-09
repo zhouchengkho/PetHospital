@@ -39,6 +39,6 @@ router.get('/learn/assistant', function (req, res) {
 
 router.get('/profile', function(req, res) {
   res.render('profile')
-
 })
+
 module.exports = router;

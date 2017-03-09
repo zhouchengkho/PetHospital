@@ -8,7 +8,7 @@ var request = require('request');
 var baseUrl = 'http://172.30.235.146:8080';
 /** API **/
 
-router.get('/test', function(req, res) {
+router.get('/session', function(req, res) {
   res.json({
     session: req.session
   })
@@ -58,7 +58,16 @@ router.post('/login', function(req, res) {
   })
 })
 
-
+router.post('/logout', function(req, res) {
+  req.session.login = null;
+  req.session.save()
+  res.json({
+    status: 200,
+    data: {
+      message: 'Logout Success'
+    }
+  })
+})
 /**
  * @api {post} /api/user User Operation
  * @apiName User Operation

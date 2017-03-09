@@ -47,18 +47,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <script type="text/javascript">
         $(document).ready(function () {
-            /*
-                    var defaults = {
-                    containerID: 'toTop', // fading element id
-                    containerHoverID: 'toTopHover', // fading element hover id
-                    scrollSpeed: 1200,
-                    easingType: 'linear'
-                    };
-                    */
             $().UItoTop({easingType: 'easeOutQuart'});
         });
     </script>
     <script src="/js/api.js"></script>
+    <script>
+        function logout() {
+          API.logout('', function(err, result) {
+              if(result.status == 200)
+                window.location.href = '/'
+          })
+        }
+    </script>
     {{{script}}}
 </head>
 <body>
@@ -85,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li><a href="/learn">Learn</a></li>
                     <li><a href="/list_case">Cases</a></li>
                     <li><a href="/profile">Profile</a></li>
-                    <li><a href="/login">Login</a></li>
+                    <li><a onclick="logout()">Logout</a></li>
                 </ul>
             </div>
             <!--/.navbar-collapse-->
