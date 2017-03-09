@@ -50,5 +50,8 @@ router.get('/disease', function (req, res) {
     res.render('disease')
 })
 
+router.get('/guidance', function(req, res) {
+  res.render('guidance')
+})
 
 module.exports = router;
