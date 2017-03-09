@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var request = require('request');
+var baseUrl = 'http://172.30.203.66:8080';
+
 
 /* GET home page. */
 
@@ -43,7 +46,8 @@ router.get('/profile', function(req, res) {
 
 
 router.get('/list_disease', function (req, res) {
-    res.render('list_disease')
+
+    res.render('list_disease');
 })
 
 router.get('/disease', function (req, res) {

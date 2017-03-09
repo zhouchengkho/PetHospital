@@ -19,31 +19,36 @@ function API() {
     });
   }
 
-  function post(url, params, callback) {
-    var options = {
-      type: 'POST',
-      contentType: 'application/json; charset=utf-8',
-      url: baseUrl + url,
-      dataType: 'json'
+    function post(url, params, callback) {
+
+        var options = {
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            url: baseUrl + url,
+            dataType: 'json'
+        }
+
+        if(params)
+            options.data =  JSON.stringify(params)
+        $.ajax(options).done(function (res) {
+            // console.log(res)
+            if (res.status == 200)
+                callback(null, res.data)
+            else
+                callback(new Error(res.message))
+        });
+
     }
-    if(params)
-      options.data = JSON.stringify(params)
 
-    $.ajax(options).done(function(res){
-      // console.log(res)
-      if(res.status == 200)
-        callback(null, res.data)
-      else
-        callback(new Error(res.message))
-    });
+    this.login = function (params, callback) {
+        post('/login', params, callback)
+    }
 
-  }
-  this.login = function(params, callback) {
-    post('/login', params, callback)
-  }
-  this.logout = function(params, callback) {
-    post('/logout', params, callback)
-  }
+    this.list_disease = function (params, callback) {
+        post('/list_disease', params, callback)
+    }
+
+
 }
 
 window.API = new API();
