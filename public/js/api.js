@@ -20,13 +20,16 @@ function API() {
   }
 
   function post(url, params, callback) {
-    $.ajax({
+    var options = {
       type: 'POST',
       contentType: 'application/json; charset=utf-8',
       url: baseUrl + url,
-      data: JSON.stringify(params),
       dataType: 'json'
-    }).done(function(res){
+    }
+    if(params)
+      options.data = JSON.stringify(params)
+
+    $.ajax(options).done(function(res){
       // console.log(res)
       if(res.status == 200)
         callback(null, res.data)
@@ -37,6 +40,9 @@ function API() {
   }
   this.login = function(params, callback) {
     post('/login', params, callback)
+  }
+  this.logout = function(params, callback) {
+    post('/logout', params, callback)
   }
 }
 
