@@ -47,7 +47,9 @@ function API() {
         get('/list_disease', params, callback);
     };
 
-
+    this.list_case = function (params, callback) {
+        get('/list_case', params, callback);
+    };
 }
 
 window.API = new API();
