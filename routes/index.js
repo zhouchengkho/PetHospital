@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+const baseUrl = require('../config').baseUrl;
 
 
 /* GET home page. */
@@ -51,12 +52,17 @@ router.get('/list_disease', function (req, res) {
     res.render('list_disease');
 });
 
-router.get('/disease', function (req, res) {
-    res.render('disease')
+
+router.get('/guidance', function (req, res) {
+    res.render('guidance')
 });
 
-router.get('/guidance', function(req, res) {
-  res.render('guidance')
+router.get('/disease', (req, res) => {
+    request.get({
+        url: baseUrl + '/disease?id=' + req.query.id
+    }, function (err, httpResponse, body) {
+        res.render('disease', JSON.parse(body).data[0]);
+    });
 });
 
 module.exports = router;

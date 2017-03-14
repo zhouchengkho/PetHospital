@@ -171,7 +171,7 @@ router.post('/user/update', function (req, res) {
 
 router.get('/list_disease', (req, res) => {
     request.get({
-        url: baseUrl + '/disease/'
+        url: baseUrl + '/disease'
     }, function (err, httpResponse, body) {
         res.json((JSON.parse(body))) //todo need parse json here
     });
@@ -179,16 +179,7 @@ router.get('/list_disease', (req, res) => {
 
 router.get('/list_case', (req, res) => {
     request.get({
-        url: baseUrl + '/case/'
-    }, function (err, httpResponse, body) {
-        res.json((JSON.parse(body))) //todo need parse json here
-    });
-});
-
-router.get('/disease/disease=+', (req, res) => {
-    console.log(req);
-    request.get({
-        url: baseUrl + '/disease/'
+        url: baseUrl + '/case'
     }, function (err, httpResponse, body) {
         res.json((JSON.parse(body))) //todo need parse json here
     });
