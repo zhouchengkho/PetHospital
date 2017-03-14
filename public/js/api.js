@@ -6,6 +6,8 @@ function API() {
     var baseUrl = '/api';
 
     function get(url, params, callback) {
+        if (params)
+            url += params;
         $.ajax({
             type: 'GET',
             contentType: 'application/json; charset=utf-8',

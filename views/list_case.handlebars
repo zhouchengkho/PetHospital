@@ -27,15 +27,15 @@
     .element {
         width: 400px;
         height: 300px;
-        box-shadow: 0px 0px 12px #ffc300;
+        box-shadow: 0px 0px 30px #ffc300;
         border: 1px solid #ffc300;
         text-align: center;
         cursor: default;
     }
 
     .element:hover {
-        box-shadow: 0px 0px 12px #ffc300;
-        border: 1px solid #ffc300;
+        box-shadow: 0px 0px 30px #bfff00;
+        border: 1px solid #bfff00;
     }
 
     .element .number {
@@ -58,7 +58,7 @@
     }
 
     .element .details {
-        position: absolute;
+        posigtion: absolute;
         bottom: 15px;
         left: 0px;
         right: 0px;
@@ -113,24 +113,23 @@
             table.push(data[i].disease);
             table.push(data[i].type);
             table.push(data[i]._id);
-            if (y == 5) {
+            if (y == 6) {
                 y = 0;
                 x++;
             }
             table.push(y++);
             table.push(x);
         }
-
         init();
         animate();
     });
 
+
     function init() {
 
-        camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 5)
-
+        camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 5);
+        camera.position.x = 100
         camera.position.z = 3000;
-
         scene = new THREE.Scene();
 
         // table
@@ -173,8 +172,8 @@
             objects.push(object);
 
             var object = new THREE.Object3D();
-            object.position.x = ( table[i + 3] * 450 ) - 1360;
-            object.position.y = -( table[i + 4] * 350 ) + 1580;
+            object.position.x = ( table[i + 3] * 450 ) - 1135;
+            object.position.y = -( table[i + 4] * 350 ) + 1930;
 
             targets.table.push(object);
 
@@ -183,6 +182,7 @@
         // sphere
 
         var vector = new THREE.Vector3();
+
         var spherical = new THREE.Spherical();
 
         for (var i = 0, l = objects.length; i < l; i++) {
@@ -196,6 +196,7 @@
 
 
             object.position.setFromSpherical(spherical);
+            object.position.y += 100;
 
             vector.copy(object.position).multiplyScalar(2);
 
@@ -349,7 +350,8 @@
     }
 
     function render() {
-        renderer.render(scene, camera);
+      renderer.render(scene, camera);
+
     }
 
 </script>

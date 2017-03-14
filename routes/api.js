@@ -3,9 +3,9 @@
  */
 const express = require('express');
 const router = express.Router();
-var uuid = require('uuid');
-var request = require('request');
-var baseUrl = require('../config').baseUrl;
+const uuid = require('uuid');
+const request = require('request');
+const baseUrl = require('../config').baseUrl;
 /** API **/
 
 router.get('/session', function (req, res) {
@@ -42,6 +42,7 @@ router.get('/session', function (req, res) {
  *
  *
  */
+
 router.post('/login', function (req, res) {
 
     console.log('logging in')
@@ -170,7 +171,7 @@ router.post('/user/update', function (req, res) {
 
 router.get('/list_disease', (req, res) => {
     request.get({
-        url: baseUrl + '/disease/'
+        url: baseUrl + '/disease'
     }, function (err, httpResponse, body) {
         res.json((JSON.parse(body))) //todo need parse json here
     });
@@ -178,7 +179,7 @@ router.get('/list_disease', (req, res) => {
 
 router.get('/list_case', (req, res) => {
     request.get({
-        url: baseUrl + '/case/'
+        url: baseUrl + '/case'
     }, function (err, httpResponse, body) {
         res.json((JSON.parse(body))) //todo need parse json here
     });

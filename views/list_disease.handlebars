@@ -25,8 +25,8 @@
     }
 
     .element {
-        width: 120px;
-        height: 160px;
+        width: 400px;
+        height: 300px;
         box-shadow: 0px 0px 12px #ffc300;
         border: 1px solid #ffc300;
         text-align: center;
@@ -34,8 +34,8 @@
     }
 
     .element:hover {
-        box-shadow: 0px 0px 12px #ffc300;
-        border: 1px solid #ffc300;
+        box-shadow: 0px 0px 30px #bfff00;
+        border: 1px solid #bfff00;
     }
 
     .element .number {
@@ -117,7 +117,7 @@
             table.push(data[i].disease);
             table.push(data[i].type);
             table.push(data[i]._id);
-            if (y == 5) {
+            if (y == 6) {
                 y = 0;
                 x++;
             }
@@ -139,15 +139,14 @@
 
         // table
 
-        for (var i = 0; i < table.length; i += 5) {
-
+        for (let i = 0; i < table.length; i += 5) {
 
             var bigbigElement = document.createElement('div');
             bigbigElement.className = 'element';
             bigbigElement.style.backgroundColor = 'rgba(128,128,150,0.5)';
 
             var bigElement = document.createElement('a');
-            bigElement.href = "/case";
+            bigElement.href = "/disease?id=" + table[i + 2];
             bigbigElement.appendChild(bigElement);
 
             var element = document.createElement('div');
@@ -177,7 +176,7 @@
             objects.push(object);
 
             var object = new THREE.Object3D();
-            object.position.x = ( table[i + 3] * 450 ) - 1360;
+            object.position.x = ( table[i + 3] * 450 ) - 1135;
             object.position.y = -( table[i + 4] * 350 ) + 1580;
 
             targets.table.push(object);
