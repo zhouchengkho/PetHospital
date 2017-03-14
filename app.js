@@ -9,6 +9,7 @@ var session = require('express-session');
 
 var routes = require('./routes/index');
 var api = require('./routes/api');
+var admin = require('./routes/admin');
 var app = express();
 var uuid = require('uuid');
 var env = process.env.NODE_ENV || 'development';
@@ -52,6 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', api);
 app.use('/', routes);
+app.use('/admin', admin);
 /// catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
