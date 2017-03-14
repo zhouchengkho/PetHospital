@@ -724,7 +724,7 @@ i.g-1{
 }
 .footer {
     padding: 5em 0 1em;
-    background-color: #111f33;
+    /*background-color: #111f33;*/
 }
 .about h6, .services h6, .footer h6, .insurance h6, .ourteam h6, .gallery h6 {
     font-size: 3em;

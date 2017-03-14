@@ -5,7 +5,7 @@ var express = require('express');
 var router = express.Router();
 var uuid = require('uuid');
 var request = require('request');
-var baseUrl = 'http://172.30.235.146:8080';
+var baseUrl = require('../config').baseUrl;
 /** API **/
 
 router.get('/session', function(req, res) {
