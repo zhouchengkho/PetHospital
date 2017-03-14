@@ -50,6 +50,10 @@ function API() {
     this.list_case = function (params, callback) {
         get('/list_case', params, callback);
     };
+
+    this.add_disease = function(params, callback) {
+      get('add_disease', params, callback)
+    }
 }
 
 window.API = new API();

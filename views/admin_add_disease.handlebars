@@ -6,11 +6,15 @@
                 <div class="to">
                     <input type="text" class="text" placeholder="Name" id="name">
                     <input type="text" class="text" placeholder="Class" id="class">
+                    <form id="form1" runat="server">
+                        <input type='file' id="imgInp" />
+                        <img id="target" src="#" alt="your image" />
+                    </form>
                 </div>
                 <div class="text">
                     <textarea placeholder="Introduction" id="introduction"></textarea>
                     <div class="form-submit">
-                        <input type="submit" id="submit" value="Submit"><br>
+                        <input id="add_disease" value="Submit"><br>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -18,3 +22,51 @@
         </div>
     </div>
 </div>
+<script src="/js/jquery.ui.widget.js"></script>
+<script src="/js/jquery.iframe-transport.js"></script>
+<script src="/js/jquery.fileupload.js"></script>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#image').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp").change(function(){
+        readURL(this);
+    });
+
+    $('#add_disease').on('click', function() {
+        console.log('into');
+        var image = $('#image').attr('src');
+        var name = $('#name').val();
+        var Class = $('#class').val();
+        var introduction = $('#introduction').val();
+
+        var data = {
+            "disease": name,
+            "type": Class,
+            "introduction": introduction
+        };
+
+//        API.add_disease(data, function(err, result) {
+//          alert(result)
+//        })
+        var options = {
+            type: 'POST',
+            url: '172.30.253.118:8080/disease/add',
+            data: JSON.stringify(data)
+        };
+
+        $.ajax(options).done(function (res) {
+            alert('finished');
+            alert(res);
+        });
+        console.log('sdasda')
+    })
+</script>
