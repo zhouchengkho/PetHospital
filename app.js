@@ -17,7 +17,6 @@ app.locals.ENV = env;
 app.locals.ENV_DEVELOPMENT = env == 'development';
 
 // view engine setup
-
 app.engine('handlebars', exphbs({
     defaultLayout: 'main',
     partialsDir: ['views/partials/']
