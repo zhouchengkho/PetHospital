@@ -7,6 +7,21 @@ function API() {
 
   const prefix = 'http://localhost:8080';
 
+  function session(callback) {
+    var options = {
+      type: 'GET',
+      url: '/api/session',
+      dataType: 'json'
+    };
+
+    $.ajax(options).done(function (res) {
+      console.log(res)
+      if (res.status == 200)
+        callback(null, res.data.token);
+      else
+        callback(new Error(res.message));
+    });
+  }
   function get(url, params, callback) {
     if (params)
       url += params;
