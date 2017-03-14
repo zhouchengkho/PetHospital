@@ -1,0 +1,111 @@
+<title>three.js css3d - periodic table</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background-color: #111f33;
+        margin: 0;
+        font-family: Helvetica, sans-serif;;
+        overflow: hidden;
+    }
+
+    a {
+        color: #333333;
+    }
+
+    #menu {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .element {
+        width: 400px;
+        height: 300px;
+        box-shadow: 0px 0px 30px #ffc300;
+        border: 1px solid #ffc300;
+        text-align: center;
+        cursor: default;
+    }
+
+    .element:hover {
+        box-shadow: 0px 0px 30px #bfff00;
+        border: 1px solid #bfff00;
+    }
+
+    .element .number {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 12px;
+        color: #ffc300;
+    }
+
+    .element .symbol {
+        position: absolute;
+        top: 40px;
+        left: 0px;
+        right: 0px;
+        font-size: 60px;
+        font-weight: bold;
+        color: #ffc300;
+        text-shadow: 0 0 10px #ffc300;
+    }
+
+    .element .details {
+        posigtion: absolute;
+        bottom: 15px;
+        left: 0px;
+        right: 0px;
+        font-size: 12px;
+        color: #ffc300;
+    }
+
+    button {
+        color: #ffc300;
+        background: transparent;
+        outline: 1px solid #ffc300;
+        border: 0px;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #807040;
+    }
+
+    button:active {
+        color: #000000;
+        background-color: #ffc300;
+    }
+</style>
+<script src="/js/3d/three.js"></script>
+<script src="/js/3d/tween.min.js"></script>
+<script src="/js/3d//TrackballControls.js"></script>
+<script src="/js/3d/CSS3DRenderer.js"></script>
+
+<div id="container"></div>
+<script></script>
+<script>
+
+
+    var camera, scene, renderer;
+    var controls;
+
+    var objects = [];
+
+    init();
+    function init() {
+        var jsloader = new THREE.JSONLoader(); jsloader.load("xxx/xxx.json", function (geometry, materials) {
+            var model = new THREE.SkinnedMesh(geometry, new THREE.MeshFaceMaterial(materials));  scene.add(model); });
+    }
+
+
+
+
+</script>

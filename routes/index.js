@@ -15,6 +15,10 @@ router.get('/login', function (req, res) {
     });
 });
 
+router.get("/3d_guidance", function (req, res) {
+  res.render('3d_guidance');
+});
+
 router.get("/case", function (req, res) {
     res.render('case');
 });
