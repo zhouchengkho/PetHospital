@@ -9,9 +9,21 @@ const baseUrl = require('../config').baseUrl;
 /** API **/
 
 router.get('/session', function (req, res) {
+  if(req.session.login) {
     res.json({
-        session: req.session
+      status: 200,
+      data: {
+        token: req.session.login.token
+      }
     })
+  }
+    else {
+      res.json({
+        status: 400,
+        message: 'Login first'
+      })
+    }
+
 })
 
 /**
@@ -42,7 +54,6 @@ router.get('/session', function (req, res) {
  *
  *
  */
-
 router.post('/login', function (req, res) {
 
     console.log('logging in')

@@ -3,59 +3,68 @@
  */
 
 function API() {
-    var baseUrl = '/api';
+  const api = '/api';
 
-    function get(url, params, callback) {
-        if (params)
-            url += params;
-        $.ajax({
-            type: 'GET',
-            contentType: 'application/json; charset=utf-8',
-            url: baseUrl + url,
-            dataType: 'json'
-        }).done(function (res) {
-            if (res.status == 200) {
-                console.log(res.data);
-                callback(null, res.data);
-            }
-            else {
-                callback(new Error(res.message));
-            }
-        });
-    }
+  const prefix = 'http://localhost:8080';
 
-    function post(url, params, callback) {
-        var options = {
-            type: 'POST',
-            contentType: 'application/json; charset=utf-8',
-            url: baseUrl + url,
-            dataType: 'json'
-        };
-        if (params)
-            options.data = JSON.stringify(params);
-        $.ajax(options).done(function (res) {
-            if (res.status == 200)
-                callback(null, res.data);
-            else
-                callback(new Error(res.message));
-        });
-    }
+  function get(url, params, callback) {
+    if (params)
+      url += params;
 
-    this.login = function (params, callback) {
-        post('/login', params, callback);
+    $.ajax({
+      type: 'GET',
+      url: url,
+      dataType: 'json'
+    }).done(function (res) {
+      if (res.status == 200) {
+        console.log(res.data);
+        callback(null, res.data);
+      }
+      else {
+        callback(new Error(res.message));
+      }
+    });
+  }
+
+  function post(url, params, callback) {
+    var options = {
+      type: 'POST',
+      url: url,
+      dataType: 'json'
     };
+    if (params)
+      options.data = JSON.stringify(params);
+    $.ajax(options).done(function (res) {
+      if (res.status == 200)
+        callback(null, res.data);
+      else
+        callback(new Error(res.message));
+    });
+  }
 
-    this.list_disease = function (params, callback) {
-        get('/list_disease', params, callback);
-    };
+  this.login = function (params, callback) {
+    post(api+'/login', params, callback);
+  };
 
-    this.list_case = function (params, callback) {
-        get('/list_case', params, callback);
-    };
+  this.logout = function(params, callback) {
+    post(api+'/logout', params, callback)
+  };
 
-    this.add_disease = function(params, callback) {
-      get('add_disease', params, callback)
-    }
+  this.list_disease = function (params, callback) {
+    get(prefix+'/disease', params, callback);
+  };
+
+  this.list_case = function (params, callback) {
+    get(prefix+'/case', params, callback);
+  };
+
+  this.add_disease = function(params, callback) {
+    post(prefix+'/disease/add', params, callback)
+  }
+
+  this.list_class = function(params, callback) {
+    get(prefix+'/case', params, callback)
+  }
 }
 
 window.API = new API();

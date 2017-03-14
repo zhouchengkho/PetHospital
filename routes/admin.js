@@ -6,6 +6,7 @@ var router = express.Router();
 var uuid = require('uuid');
 var request = require('request');
 var baseUrl = require('../config').baseUrl;
+// baseUrl = 'http://localhost:8080';
 /** admin **/
 
 
@@ -14,7 +15,13 @@ router.get('/add_case', function(req, res) {
 })
 
 router.get('/add_disease', function(req, res) {
-  res.render('admin_add_disease')
+  request.get({
+    url: baseUrl + '/class'
+  }, function (err, httpResponse, body) {
+    res.render('admin_add_disease', {
+      type: JSON.parse(body).data
+    });
+  });
 })
 
 

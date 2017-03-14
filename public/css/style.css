@@ -32,7 +32,7 @@ ul{
 }
 label {
     margin: 0;
-    color: #fff;
+    color: #ffc300;
 }
 /*-- header --*/
 .header-bottom {
@@ -1351,3 +1351,26 @@ i.te:hover {
   margin-top: 16px;
   margin-bottom: 16px;
 }
+
+.form-submit #submit{
+  color: #FFF;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.1em;
+  font-weight: normal;
+  padding: 14px 36px;
+  text-transform: uppercase;
+  background: #ffc300;
+  display: inline-block;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  font-weight: 100;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  width: 150px;
+  text-align: center;
+}
+
