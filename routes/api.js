@@ -305,4 +305,6 @@ router.get('/list_disease', (req, res) => {
 });
 
 
+
+
 module.exports = router;
