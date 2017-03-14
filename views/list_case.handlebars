@@ -113,7 +113,7 @@
             table.push(data[i].disease);
             table.push(data[i].type);
             table.push(data[i]._id);
-            if (y == 5) {
+            if (y == 6) {
                 y = 0;
                 x++;
             }
@@ -124,11 +124,12 @@
         animate();
     });
 
+
     function init() {
 
-        camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 5)
-        camera.position.set(0, 0, 3000);
-
+        camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 5);
+        camera.position.x = 100
+        camera.position.z = 3000;
         scene = new THREE.Scene();
 
         // table
@@ -171,7 +172,7 @@
             objects.push(object);
 
             var object = new THREE.Object3D();
-            object.position.x = ( table[i + 3] * 450 ) - 910;
+            object.position.x = ( table[i + 3] * 450 ) - 1135;
             object.position.y = -( table[i + 4] * 350 ) + 1930;
 
             targets.table.push(object);
@@ -181,6 +182,7 @@
         // sphere
 
         var vector = new THREE.Vector3();
+
         var spherical = new THREE.Spherical();
 
         for (var i = 0, l = objects.length; i < l; i++) {
@@ -193,8 +195,8 @@
             spherical.set(800, phi, theta);
 
 
-            object.position.setFromSpherical(spherical)
-            object.position.y += 100
+            object.position.setFromSpherical(spherical);
+            object.position.y += 100;
 
             vector.copy(object.position).multiplyScalar(2);
 
@@ -348,7 +350,8 @@
     }
 
     function render() {
-        renderer.render(scene, camera);
+      renderer.render(scene, camera);
+
     }
 
 </script>
