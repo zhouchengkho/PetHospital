@@ -139,15 +139,14 @@
 
         // table
 
-        for (var i = 0; i < table.length; i += 5) {
-
+        for (let i = 0; i < table.length; i += 5) {
 
             var bigbigElement = document.createElement('div');
             bigbigElement.className = 'element';
             bigbigElement.style.backgroundColor = 'rgba(128,128,150,0.5)';
 
             var bigElement = document.createElement('a');
-            bigElement.href = "/case";
+            bigElement.href = "/disease/disease=" + table[i];
             bigbigElement.appendChild(bigElement);
 
             var element = document.createElement('div');
