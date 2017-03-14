@@ -1,17 +1,17 @@
 /**
  * Created by zhoucheng on 3/1/17.
  */
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 var uuid = require('uuid');
-var request = require('request');
-var baseUrl = 'http://172.30.235.146:8080';
+const request = require('request');
+const baseUrl = 'http://172.30.253.118:8080';
 /** API **/
 
-router.get('/session', function(req, res) {
-  res.json({
-    session: req.session
-  })
+router.get('/session', function (req, res) {
+    res.json({
+        session: req.session
+    })
 })
 
 /**
@@ -49,7 +49,7 @@ router.post('/login', function (req, res) {
         name: req.body.username,
         token: uuid.v4()
     }
-    req.session.save()
+    req.session.save();
     res.json({
         status: 200,
         data: {
@@ -58,15 +58,15 @@ router.post('/login', function (req, res) {
     })
 })
 
-router.post('/logout', function(req, res) {
-  req.session.login = null;
-  req.session.save()
-  res.json({
-    status: 200,
-    data: {
-      message: 'Logout Success'
-    }
-  })
+router.post('/logout', function (req, res) {
+    req.session.login = null;
+    req.session.save()
+    res.json({
+        status: 200,
+        data: {
+            message: 'Logout Success'
+        }
+    })
 })
 /**
  * @api {post} /api/user User Operation
@@ -132,7 +132,7 @@ router.post('/user/add', function (req, res) {
     }, function (err, httpResponse, body) {
         res.json(JSON.parse(body))
     })
-})
+});
 
 router.post('/user/delete', function (req, res) {
     var form = {
@@ -148,7 +148,7 @@ router.post('/user/delete', function (req, res) {
     }, function (err, httpResponse, body) {
         res.json(JSON.parse(body))
     })
-})
+});
 
 router.post('/user/update', function (req, res) {
     var form = {
@@ -164,23 +164,16 @@ router.post('/user/update', function (req, res) {
             "Content-Type": "text/html"
         }
     }, function (err, httpResponse, body) {
-        res.json(JSON.parse(body))
-    })
-})
+        res.json(JSON.parse(body));
+    });
+});
 
-router.post('/list_disease',function (req,res) {
-    var form = {
-        operation: 'list'
-    };
-    // request.post({
-    //     url: baseUrl + '/disease',
-    //     form: form,
-    //     headers: {
-    //         "Content-Type": "text/html"
-    //     }
-    // }, function (err, httpResponse, body) {
-    //     res.json(JSON.parse(body));
-    // });
+router.get('/list_disease', (req, res) => {
+    request.get({
+        url: baseUrl + '/disease/'
+    }, function (err, httpResponse, body) {
+        res.json((JSON.parse(body))) //todo need parse json here
+    });
 
     var table = [
         "H", "Hydrogen", "1.00794", 1, 1,
@@ -303,15 +296,13 @@ router.post('/list_disease',function (req,res) {
         "Uuo", "Ununoctium", "(294)", 18, 7
     ];
 
-    res.json({
-        status: 200,
-        data: table
-    })
+    // res.json({
+    //     status: 200,
+    //     data: table
+    // })
 
 
-})
-
-
+});
 
 
 module.exports = router;
