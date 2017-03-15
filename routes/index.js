@@ -60,7 +60,7 @@ router.get('/guidance', function (req, res) {
 router.get('/disease', (req, res) => {
     request.get({
         url: baseUrl + '/disease?id=' + req.query.id
-    }, function (err, httpResponse, body) {
+    }, (err, httpResponse, body) => {
         res.render('disease', JSON.parse(body).data[0]);
     });
 });

@@ -103,6 +103,10 @@ function API() {
     post('/disease/add', params, callback)
   }
 
+  this.add_case = function(params, callback) {
+    post('/case/add', params, callback)
+  }
+
 
 }
 

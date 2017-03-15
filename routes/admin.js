@@ -9,17 +9,24 @@ var baseUrl = require('../config').baseUrl;
 baseUrl = 'http://localhost:8080';
 /** admin **/
 
-
-router.get('/add_case', function(req, res) {
-  res.render('admin_add_case');
+router.all('/*', (req, res, next) => {
+  // TODO: check admin auth here
+  next()
 })
-
-router.get('/add_disease', (req, res) => {
-  console.log('in router')
+router.get('/add_case', (req, res) => {
   request.get({
     url: baseUrl + '/class'
   }, (err, httpResponse, body) => {
-    console.log('how many times')
+    res.render('admin_add_case', {
+      type: JSON.parse(body).data
+    });
+  });
+})
+
+router.get('/add_disease', (req, res) => {
+  request.get({
+    url: baseUrl + '/class'
+  }, (err, httpResponse, body) => {
     res.render('admin_add_disease', {
       type: JSON.parse(body).data
     });
