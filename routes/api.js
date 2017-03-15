@@ -54,20 +54,24 @@ router.get('/session', function (req, res) {
  *
  *
  */
-router.post('/login', function (req, res) {
+router.post('/login', (req, res) => {
 
-    console.log('logging in')
-    req.session.login = {
-        name: req.body.username,
-        token: uuid.v4()
+  console.log('logging in');
+  // console.log(JSON.stringify(req.session));
+  req.session.login = {
+    name: req.body.username,
+    token: uuid.v4()
+  }
+  // console.log(JSON.stringify(req.session));
+
+  req.session.save();
+  res.json({
+    status: 200,
+    data: {
+      message: 'Login Success',
+      token: req.session.login.token
     }
-    req.session.save();
-    res.json({
-        status: 200,
-        data: {
-            message: 'Login Success'
-        }
-    })
+  })
 })
 
 router.post('/logout', function (req, res) {
