@@ -88,6 +88,7 @@
 <script src="/js/3d/tween.min.js"></script>
 <script src="/js/3d//TrackballControls.js"></script>
 <script src="/js/3d/CSS3DRenderer.js"></script>
+<script src="/js/spin.js"></script>
 
 <div id="container"></div>
 <div id="menu">
@@ -98,6 +99,30 @@
 </div>
 <script></script>
 <script>
+    let opts = {
+        lines: 13 // The number of lines to draw
+        , length: 20 // The length of each line
+        , width: 10 // The line thickness
+        , radius: 42 // The radius of the inner circle
+        , scale: 1 // Scales overall size of the spinner
+        , corners: 1 // Corner roundness (0..1)
+        , color: '#ffc300' // #rgb or #rrggbb or array of colors
+        , opacity: 0.25 // Opacity of the lines
+        , rotate: 0 // The rotation offset
+        , direction: 1 // 1: clockwise, -1: counterclockwise
+        , speed: 1 // Rounds per second
+        , trail: 60 // Afterglow percentage
+        , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+        , zIndex: 2e9 // The z-index (defaults to 2000000000)
+        , className: 'spinner' // The CSS class to assign to the spinner
+        , top: '50%' // Top position relative to parent
+        , left: '50%' // Left position relative to parent
+        , shadow: false // Whether to render a shadow
+        , hwaccel: false // Whether to use hardware acceleration
+        , position: 'absolute' // Element positioning
+    };
+    let target = document.getElementById('container');
+    let spinner = new Spinner(opts).spin(target);
 
     var table = [];
     var camera, scene, renderer;
@@ -106,12 +131,13 @@
     var objects = [];
     var targets = {table: [], sphere: [], helix: [], grid: []};
 
-    API.list_disease('', function (err, data) { //debug
-        var y = 0;
-        var x = 0;
-        for (var i = 0; i < data.length; i++) {
-            table.push(data[i].disease);
-            table.push(data[i].type);
+    API.list_case('', (err, data) => { //debug
+        spinner.stop();
+        let y = 0;
+        let x = 0;
+        for (let i = 0; i < data.length; i++) {
+            table.push(data[i].name);
+            table.push(data[i].disease_name);
             table.push(data[i]._id);
             if (y == 6) {
                 y = 0;
@@ -128,7 +154,7 @@
     function init() {
 
         camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 5);
-        camera.position.x = 100
+        camera.position.x = 100;
         camera.position.z = 3000;
         scene = new THREE.Scene();
 
@@ -142,7 +168,7 @@
             bigbigElement.style.backgroundColor = 'rgba(128,128,150,0.5)';
 
             var bigElement = document.createElement('a');
-            bigElement.href = "/case";
+            bigElement.href = "/case?id=" + table[i + 2];
             bigbigElement.appendChild(bigElement);
 
             var element = document.createElement('div');
@@ -350,7 +376,7 @@
     }
 
     function render() {
-      renderer.render(scene, camera);
+        renderer.render(scene, camera);
 
     }
 

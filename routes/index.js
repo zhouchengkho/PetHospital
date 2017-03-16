@@ -17,12 +17,9 @@ router.get('/login', function (req, res) {
 });
 
 router.get("/3d_guidance", function (req, res) {
-  res.render('3d_guidance');
+    res.render('3d_guidance');
 });
 
-router.get("/case", function (req, res) {
-    res.render('case');
-});
 
 router.get('/list_case', function (req, res) {
     res.render('list_case');
@@ -66,6 +63,15 @@ router.get('/disease', (req, res) => {
        res.render('error', {message: data.message});
       else
         res.render('disease', data.data)
+    });
+});
+
+router.get('/case', (req, res) => {
+    request.get({
+        url: baseUrl + '/case?id=' + req.query.id
+    }, (err, httpResponse, body) => {
+        console.log(JSON.stringify(body));
+        res.render('case', JSON.parse(body).data[0]);
     });
 });
 
