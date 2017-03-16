@@ -188,7 +188,7 @@ router.get('/list_disease', (req, res) => {
     request.get({
         url: baseUrl + '/disease'
     }, function (err, httpResponse, body) {
-        res.json((JSON.parse(body))) //todo need parse json here
+        res.json((JSON.parse(body))); //todo need parse json here
     });
 });
 
@@ -196,7 +196,7 @@ router.get('/list_case', (req, res) => {
     request.get({
         url: baseUrl + '/case'
     }, function (err, httpResponse, body) {
-        res.json((JSON.parse(body))) //todo need parse json here
+        res.json((JSON.parse(body))); //todo need parse json here
     });
 });
 
