@@ -98,11 +98,13 @@ function API() {
 
     this.add_disease = function (params, callback) {
         post('/disease/add', params, callback)
-    }
+    };
 
     this.add_case = function (params, callback) {
         post('/case/add', params, callback)
-    }
+    };
+
+    
 
   this.register = function(params, callback) {
     post('/user/add', params, callback)
