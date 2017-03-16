@@ -55,20 +55,27 @@ router.get('/guidance', function (req, res) {
 });
 
 router.get('/disease', (req, res) => {
-    request.get({
-        url: baseUrl + '/disease?id=' + req.query.id
-    }, (err, httpResponse, body) => {
-        res.render('disease', JSON.parse(body).data[0]);
-    });
+    if (req.query.id) {// if id exist
+        request.get({
+            url: baseUrl + '/disease?id=' + req.query.id
+        }, (err, httpResponse, body) => {
+            res.render('disease', JSON.parse(body).data[0]);
+        });
+    } else {
+        res.render('disease');
+    }
 });
 
 router.get('/case', (req, res) => {
-    request.get({
-        url: baseUrl + '/case?id=' + req.query.id
-    }, (err, httpResponse, body) => {
-        console.log(JSON.stringify(body));
-        res.render('case', JSON.parse(body).data[0]);
-    });
+    if (req.query.id) {// if id exist
+        request.get({
+            url: baseUrl + '/case?id=' + req.query.id
+        }, (err, httpResponse, body) => {
+            res.render('case', JSON.parse(body).data[0]);
+        });
+    } else {//when id is undefined
+        res.render('case');
+    }
 });
 
 module.exports = router;
