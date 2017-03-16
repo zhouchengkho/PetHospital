@@ -75,7 +75,8 @@
         };
         API.add_disease(data, function(err, result) {
           if(!err) {
-            window.href = '/disease?id='+result.id
+              $.toaster({ priority : 'success', title : 'Success', message : 'Yo' });
+            window.location.href = '/disease?id='+JSON.parse(result).id
           }
         });
     }

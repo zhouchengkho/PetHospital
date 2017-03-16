@@ -3,7 +3,7 @@
  */
 
 function API() {
-  const prefix = 'http://localhost:8080';
+  const prefix = 'http://172.30.253.118:8080';
 
   function getToken() {
     var token = window.localStorage.getItem('token');
@@ -37,7 +37,7 @@ function API() {
       url: prefix + url,
       dataType: 'json',
       headers: {
-        token: getToken()
+        token: getToken(),
       }
     };
     if (params)
@@ -107,6 +107,9 @@ function API() {
     post('/case/add', params, callback)
   }
 
+  this.register = function(params, callback) {
+    post('/user/add', params, callback)
+  }
 
 }
 

@@ -6,7 +6,7 @@ var router = express.Router();
 var uuid = require('uuid');
 var request = require('request');
 var baseUrl = require('../config').baseUrl;
-baseUrl = 'http://localhost:8080';
+// baseUrl = 'http://localhost:8080';
 /** admin **/
 
 router.all('/*', (req, res, next) => {
@@ -15,17 +15,18 @@ router.all('/*', (req, res, next) => {
 })
 router.get('/add_case', (req, res) => {
   request.get({
-    url: baseUrl + '/class'
+    url: baseUrl + '/disease'
   }, (err, httpResponse, body) => {
+    var data = JSON.parse(body)
     res.render('admin_add_case', {
-      type: JSON.parse(body).data
+      disease: data.data
     });
   });
 })
 
 router.get('/add_disease', (req, res) => {
   request.get({
-    url: baseUrl + '/class'
+    url: baseUrl + '/disease?type'
   }, (err, httpResponse, body) => {
     res.render('admin_add_disease', {
       type: JSON.parse(body).data

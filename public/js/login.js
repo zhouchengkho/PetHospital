@@ -6,8 +6,8 @@ $(document).ready(function() {
 
   $('#login').on('click', function() {
     var params = {
-      username: $('.login-form #user').val(),
-      password: $('.login-form #pass').val()
+      username: $('.sign-in-htm #user').val(),
+      password: $('.sign-in-htm #pass').val()
     }
     // alert(JSON.stringify(params))
     API.login(params, function(err, result){
@@ -15,6 +15,21 @@ $(document).ready(function() {
         alert('login fail')
       else {
           location.href = '/'
+      }
+    })
+  })
+
+  $('#sign_up').on('click', function() {
+    var params = {
+      username: $('.sign-up-htm #user').val(),
+      password: $('.sign-up-htm #pass').val()
+    }
+    // alert(JSON.stringify(params))
+    API.register(params, function(err, result){
+      if(err)
+        alert('register fail')
+      else {
+        location.href = '/login'
       }
     })
   })

@@ -12,9 +12,9 @@
                 <div class="col-xs-6 form-group">
                     <label class="col-xs-4 control-label">病种</label>
                     <div class="col-xs-8">
-                        <select id="class" class="form-control">
-                          {{#each type}}
-                              <option>{{this}}</option>
+                        <select id="type" class="form-control">
+                          {{#each disease}}
+                              <option>{{this.disease}}</option>
                           {{/each}}
                         </select>
                     </div>
@@ -60,14 +60,14 @@
     function createCase() {
         var image = $('#image').attr('src');
         var name = $('#name').val();
-        var Class = $('#class option:selected').text();
+        var type = $('#type option:selected').text();
         var data = {
             "disease": name,
-            "type": Class
+            "type": type
         };
         API.add_case(data, function(err, result) {
             if(!err) {
-                window.href = '/case?id='+result.id
+                window.location.href = '/case?id='+result.id
             }
         });
     }

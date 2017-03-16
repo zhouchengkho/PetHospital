@@ -61,7 +61,11 @@ router.get('/disease', (req, res) => {
     request.get({
         url: baseUrl + '/disease?id=' + req.query.id
     }, (err, httpResponse, body) => {
-        res.render('disease', JSON.parse(body).data[0]);
+      var data = JSON.parse(body)
+     if(data.status != 200)
+       res.render('error', {message: data.message});
+      else
+        res.render('disease', data.data)
     });
 });
 
