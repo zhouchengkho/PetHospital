@@ -9,7 +9,6 @@ $(document).ready(function() {
       username: $('.sign-in-htm #user').val(),
       password: $('.sign-in-htm #pass').val()
     }
-    // alert(JSON.stringify(params))
     API.login(params, function(err, result){
       if(err)
         alert('login fail')
@@ -21,7 +20,7 @@ $(document).ready(function() {
 
   $('#sign_up').on('click', function() {
     var params = {
-      username: $('.sign-up-htm #user').val(),
+      name: $('.sign-up-htm #user').val(),
       password: $('.sign-up-htm #pass').val()
     }
     // alert(JSON.stringify(params))

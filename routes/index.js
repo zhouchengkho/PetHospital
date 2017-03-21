@@ -3,6 +3,18 @@ var router = express.Router();
 var request = require('request');
 const baseUrl = require('../config').baseUrl;
 
+/**
+ * Login Auth
+//  */
+// router.all('/*', function(req, res, next) {
+//   if(req.url === '/login') {
+//     return next()
+//   }
+//   if(!req.session.login) {
+//     return res.redirect('/login');
+//   }
+//   next()
+// })
 
 /* GET home page. */
 router.get('/', function (req, res) {
@@ -40,8 +52,21 @@ router.get('/learn/assistant', function (req, res) {
     res.render('assistant')
 });
 
-router.get('/profile', function (req, res) {
-    res.render('profile')
+router.get('/profile', (req, res) => {
+  request.get({
+    url: baseUrl + '/user/profile',
+    headers: {
+      token: req.session.login.token
+    }
+  }, (err, httpResponse, body) => {
+    var data = JSON.parse(body)
+    console.log(data)
+    if(data.status != 200)
+      res.render('error', {message: data.message});
+    else
+      res.render('profile', data.data)
+  });
+    // res.render('profile')
 });
 
 
