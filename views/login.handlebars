@@ -1,6 +1,8 @@
 
 <link rel="stylesheet" href="css/login.css">
 <script>$('#navbar').hide()</script>
+<div class="banner" id="home">
+
 <div class="login-wrap">
     <div class="login-html">
         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
@@ -51,4 +53,9 @@
         </div>
     </div>
 </div>
+</div>
 
+<script>
+    var hi = window.screen.height - 97;
+    document.getElementById("home").style.height=hi+"px";
+</script>

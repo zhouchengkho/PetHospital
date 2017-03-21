@@ -5,16 +5,16 @@ const baseUrl = require('../config').baseUrl;
 
 /**
  * Login Auth
- */
-router.all('/*', function(req, res, next) {
-  if(req.url === '/login') {
-    return next()
-  }
-  if(!req.session.login) {
-    return res.redirect('/login');
-  }
-  next()
-})
+//  */
+// router.all('/*', function(req, res, next) {
+//   if(req.url === '/login') {
+//     return next()
+//   }
+//   if(!req.session.login) {
+//     return res.redirect('/login');
+//   }
+//   next()
+// })
 
 /* GET home page. */
 router.get('/', function (req, res) {
