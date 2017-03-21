@@ -6,8 +6,8 @@
                 <img src="./../img/p3.jpg" class="img-responsive" alt="">
             </div>
             <div class="margin-horizontal-16">
-                <h4>case 名</h4>
-                <h4>disease 名</h4>
+                <h4>{{disease_name}}</h4>
+                <h4>{{name}}</h4>
             </div>
         </div>
         <div class="col-xs-8">
@@ -22,16 +22,48 @@
                 <li class="active"><a href="#tab1" data-toggle="tab" aria-expanded="true">诊断结果</a></li>
                 <li><a href="#tab2" data-toggle="tab">治疗手段</a></li>
             </ul>
+
             <div class="tab-content" id="tabs">
                 <div class="tab-pane about active" id="tab1">
-                  没救了
+                    <div class="input-group">
+                        <input id="treat_record" type="text" class="form-control" placeholder="新增记录">
+                        <span id="treat_btn" class="input-group-btn"><button class="btn btn-default"
+                                                                             type="button">提交</button></span>
+                    </div><!-- /input-group -->
+
+                    <div class="panel panel-info" style="margin-top: 10px;">
+                        <div class="panel-body">
+                            {{treatment}}
+                        </div>
+                    </div>
                 </div>
                 <div class="tab-pane about" id="tab2">
-                    哈哈哈
+                    <div class="input-group">
+                        <input id="result_record" type="text" class="form-control" placeholder="新增记录">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">提交</button>
+                    </span>
+                    </div><!-- /input-group -->
+                    <div class="panel panel-info" style="margin-top: 10px;">
+                        <div class="panel-body">
+                            {{result}}
+                        </div>
+                    </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(() => {
+        $("#treat_btn").click(() => {
+            let text = $("#treat_record").val();
+            alert(text);
+        })
+    })
+
+    function update() {
+
+    }
+</script>
