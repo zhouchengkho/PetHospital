@@ -31,11 +31,11 @@
                                                                              type="button">提交</button></span>
                     </div><!-- /input-group -->
 
-                    <div class="panel panel-info" style="margin-top: 10px;">
-                        <div class="panel-body">
-                            {{treatment}}
-                        </div>
-                    </div>
+                    <ul class="list-group" id="treat_list">
+                        {{#each treatment}}
+                            <li class="list-group-item">{{this.date}}{{this.content}}</li>
+                        {{/each}}
+                    </ul>
                 </div>
                 <div class="tab-pane about" id="tab2">
                     <div class="input-group">
@@ -52,18 +52,29 @@
                 </div>
             </div>
         </div>
+        <p id="case_id">{{_id}}</p>
     </div>
 </div>
 
 <script>
-    $(document).ready(() => {
-        $("#treat_btn").click(() => {
-            let text = $("#treat_record").val();
-            alert(text);
-        })
-    })
 
-    function update() {
+    $("#treat_btn").click(() => {
+        let treat_list = [];
+        let id = $("#case_id").text();
+        $("ul#treat_list li").each(function () {
+            treat_list.push($(this).text());
+            console.log($(this).text());
+        });
 
-    }
+        let data = {
+            "id": id,
+            "new_treatment": treat_list
+        };
+//        API.update_treatment(data, (err, result) => {
+//
+//        });
+        alert(treat_list.length + id);
+    });
+
+
 </script>

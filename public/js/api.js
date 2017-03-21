@@ -2,10 +2,10 @@
  * Created by zhoucheng on 3/1/17.
  */
 
-const baseUrl = "http://172.29.144.45:8080";
+const baseUrl = "http://172.30.204.109:8080";
 
 function API() {
-  const prefix = 'http://localhost:8080';
+    const prefix = 'http://localhost:8080';
 
     function getToken() {
         return window.localStorage.getItem('token');
@@ -42,7 +42,7 @@ function API() {
             }
         };
         if (params)
-            options.data = JSON.stringify(params);
+            options.data = params;
         $.ajax(options).done((res) => {
             if (res.status == 200)
                 callback(null, res.data);
@@ -100,15 +100,19 @@ function API() {
         post('/disease/add', params, callback)
     };
 
+
     this.add_case = function (params, callback) {
         post('/case/add', params, callback)
     };
 
+    this.update_treatment = function (params, callback) {
+        post('/case/treatment/update', params, callback);
+    }
 
 
-  this.register = function(params, callback) {
-    post('/user/add', params, callback)
-  }
+    this.register = function (params, callback) {
+        post('/user/add', params, callback)
+    }
 
 }
 
