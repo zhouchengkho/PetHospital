@@ -105,9 +105,9 @@ function API() {
         post('/case/add', params, callback)
     };
 
-    this.update_treatment = function (params, callback) {
-        post('/case/treatment/update', params, callback);
-    }
+    this.add_treatment = function (params, callback) {
+        post('/case/treatment/add', params, callback);
+    };
 
 
     this.register = function (params, callback) {

@@ -26,24 +26,24 @@
             <div class="tab-content" id="tabs">
                 <div class="tab-pane about active" id="tab1">
                     <div class="input-group">
-                        <input id="treat_record" type="text" class="form-control" placeholder="新增记录">
+                        <input id="treat_record" type="text" class="form-control" placeholder="新增记录" required>
                         <span id="treat_btn" class="input-group-btn"><button class="btn btn-default"
                                                                              type="button">提交</button></span>
                     </div><!-- /input-group -->
 
                     <ul class="list-group" id="treat_list">
                         {{#each treatment}}
-                            <li class="list-group-item">{{this.date}}{{this.content}}</li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-md-4">{{this.date}} </div>
+                                    <div class="col-md-4 col-md-offset-2"> {{this.content}}</div>
+
+                                </div>
+                            </li>
                         {{/each}}
                     </ul>
                 </div>
                 <div class="tab-pane about" id="tab2">
-                    <div class="input-group">
-                        <input id="result_record" type="text" class="form-control" placeholder="新增记录">
-                        <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">提交</button>
-                    </span>
-                    </div><!-- /input-group -->
                     <div class="panel panel-info" style="margin-top: 10px;">
                         <div class="panel-body">
                             {{result}}
@@ -52,28 +52,32 @@
                 </div>
             </div>
         </div>
-        <p id="case_id">{{_id}}</p>
+        <p id="case_id" style="display: none">{{id}}</p>
     </div>
 </div>
 
 <script>
 
+
     $("#treat_btn").click(() => {
         let treat_list = [];
         let id = $("#case_id").text();
-        $("ul#treat_list li").each(function () {
-            treat_list.push($(this).text());
-            console.log($(this).text());
-        });
+        let record = $("#treat_record").val();
 
         let data = {
             "id": id,
-            "new_treatment": treat_list
+            "content": record
         };
-//        API.update_treatment(data, (err, result) => {
-//
-//        });
-        alert(treat_list.length + id);
+        API.add_treatment(data, (err, result) => {
+            if (!err) {
+                $("ul#treat_list li").remove("li");//clear element
+                result.forEach((element) => {
+                    console.log(element);
+                    $("ul#treat_list").append("<li class=\"list-group-item\">" + element.date + element.content + "</li>");
+                });
+            }
+        });
+
     });
 
 
