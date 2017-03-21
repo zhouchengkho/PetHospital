@@ -59,10 +59,9 @@ router.post('/login', (req, res) => {
   console.log('logging in');
   // console.log(JSON.stringify(req.session));
 
-
   var form = {
-    name: 'wangkeai',
-    password: '123'
+    name: req.body.username,
+    password: req.body.password
   };
   request.post({
     url: baseUrl + '/login',
@@ -72,20 +71,26 @@ router.post('/login', (req, res) => {
     }
   }, function (err, httpResponse, body) {
     console.log(body)
-    req.session.login = {
-      name: req.body.username,
-      token: JSON.parse(body).data.session_id
-    }
-    // console.log(JSON.stringify(req.session));
-
-    req.session.save();
-    res.json({
-      status: 200,
-      data: {
-        message: 'Login Success',
-        token: req.session.login.token
+    var result = JSON.parse(body)
+    if(result.status === 200) {
+      req.session.login = {
+        name: req.body.username,
+        token: JSON.parse(body).data.sessionid
       }
-    })
+      // console.log(JSON.stringify(req.session));
+
+      req.session.save();
+      res.json({
+        status: 200,
+        data: {
+          message: 'Login Success',
+          token: req.session.login.token
+        }
+      })
+    } else {
+      res.json(result)
+    }
+
   })
 })
 
