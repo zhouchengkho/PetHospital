@@ -2,7 +2,7 @@
  * Created by zhoucheng on 3/1/17.
  */
 
-const baseUrl = "http://172.30.235.59:8080";
+const baseUrl = "http://172.30.235.204:8080";
 
 function API() {
     const prefix = 'http://localhost:8080';
@@ -56,7 +56,7 @@ function API() {
             type: 'POST',
             url: '/api/login',
             dataType: 'json',
-            data: JSON.stringify(params)
+            data: params
         };
 
         $.ajax(options).done((res) => {
