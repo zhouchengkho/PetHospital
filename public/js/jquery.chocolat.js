@@ -18,9 +18,9 @@
             linksContainer: 'Choco_links_container',
             overlayOpacity: 0.9,
             overlayColor: '#fff',
-            fadeInOverlayduration: 500,
-            fadeInImageduration: 500,
-            fadeOutImageduration: 500,
+            fadeInOverlayduration: 100,
+            fadeInImageduration: 100,
+            fadeOutImageduration: 100,
             vache: true,
             separator1: ' | ',
             separator2: '/',
@@ -31,7 +31,7 @@
             currentImage: 0,
             setIndex: 0,
             setTitle: '',
-            lastImage: 0
+            lastImage: 0,
         }, settings);
 
         calls++;
@@ -184,7 +184,6 @@
         }
 
         function ChoColat(hauteur_image, largeur_image, resize) {
-
             if (resize) {
                 $('#Choco_container_photo, #Choco_content, #Choco_bigImage').stop(true, false).css({'overflow': 'visible'});
                 $('#Choco_bigImage').animate({
@@ -219,11 +218,11 @@
                     hide = false;
                     if (what[i] == 'Choco_right_arrow' && settings.currentImage == settings.lastImage) {
                         hide = true;
-                        $('#' + what[i]).fadeOut(300);
+                        $('#' + what[i]).fadeOut(100);
                     }
                     else if (what[i] == 'Choco_left_arrow' && settings.currentImage == 0) {
                         hide = true;
-                        $('#' + what[i]).fadeOut(300);
+                        $('#' + what[i]).fadeOut(100);
                     }
                     if (!hide) {
                         $('#' + what[i]).fadeIn(settings.fadeOutImageduration);
@@ -290,8 +289,8 @@
             }
             ;
             return {
-                largeur: limg,
-                hauteur: himg
+                largeur: limg * 1.8,
+                hauteur: himg * 1.8
             };
 
         }
@@ -302,10 +301,10 @@
         }
 
         function close() {
-            $('#Choco_overlay').fadeOut(900, function () {
+            $('#Choco_overlay').fadeOut(300, function () {
                 $('#Choco_overlay').remove()
             });
-            $('#Choco_content').fadeOut(500, function () {
+            $('#Choco_content').fadeOut(300, function () {
                 $('#Choco_content').remove()
             });
             settings.currentImage = 0;
