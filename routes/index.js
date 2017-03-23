@@ -36,20 +36,79 @@ router.get("/3d_guidance", function (req, res) {
 router.get('/list_case', function (req, res) {
     res.render('list_case');
 });
-router.get('/learn', function (req, res) {
-    res.render('learn')
+router.get('/learn',  (req, res) => {
+
+
+  res.render('learn')
 });
 
-router.get('/learn/reception', function (req, res) {
-    res.render('reception')
+router.get('/learn/reception',  (req, res) => {
+  request.get({
+    url: baseUrl + '/disease'
+  }, (err, httpResponse, body) => {
+    var data = JSON.parse(body);
+    if(data.status === 200) {
+      var vital = data.data.slice(0, 1);
+      var list = data.data.slice(1, 10);
+      console.log(vital)
+      console.log(list)
+      res.render('reception', {
+        status: 200,
+        data: {
+          vital: vital,
+          list: list
+        }
+      })
+    } else {
+      res.render('error', {message: data.message})
+    }
+  })
+    // res.render('reception')
 });
 
-router.get('/learn/vet', function (req, res) {
-    res.render('vet')
+router.get('/learn/vet',  (req, res) => {
+  request.get({
+    url: baseUrl + '/disease'
+  }, (err, httpResponse, body) => {
+    var data = JSON.parse(body);
+    if(data.status === 200) {
+      var vital = data.data.slice(0, 1);
+      var list = data.data.slice(1, 10);
+      console.log(vital)
+      console.log(list)
+      res.render('vet', {
+        status: 200,
+        data: {
+          vital: vital,
+          list: list
+        }
+      })
+    } else {
+      res.render('error', {message: data.message})
+    }})
 });
 
-router.get('/learn/assistant', function (req, res) {
-    res.render('assistant')
+router.get('/learn/assistant',  (req, res) => {
+  request.get({
+    url: baseUrl + '/disease'
+  }, (err, httpResponse, body) => {
+    var data = JSON.parse(body);
+    if (data.status === 200) {
+      var vital = data.data.slice(0, 1);
+      var list = data.data.slice(1, 10);
+      console.log(vital)
+      console.log(list)
+      res.render('assistant', {
+        status: 200,
+        data: {
+          vital: vital,
+          list: list
+        }
+      })
+    } else {
+      res.render('error', {message: data.message})
+    }
+  })
 });
 
 router.get('/profile', (req, res) => {

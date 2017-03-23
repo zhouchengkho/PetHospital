@@ -2,7 +2,7 @@
  * Created by zhoucheng on 3/1/17.
  */
 
-const baseUrl = "http://172.30.204.109:8080";
+const baseUrl = "http://172.30.235.59:8080";
 
 function API() {
     const prefix = 'http://localhost:8080';

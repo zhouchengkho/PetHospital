@@ -3,44 +3,29 @@
         <h6>Vet</h6>
         <div class="col-md-7 about-left">
             <h3>Recommended</h3>
-            <div class="abt-top">
-                <div class="abt-lft">
-                    <img src="./../img/p3.jpg" class="img-responsive" alt="">
-                </div>
-                <div class="abt-rgt">
-                    <h4>First true generator</h4>
-                    <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model
-                        text, and a search for 'lorem ipsum' will uncover many</p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="abt-top">
-                <div class="abt-lft">
-                    <img src="./../img/4.jpg" class="img-responsive" alt="">
-                </div>
-                <div class="abt-rgt">
-                    <h4>The generated Lorem </h4>
-                    <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model
-                        text, and a search for 'lorem ipsum' will uncover many</p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
+          {{#each data.vital}}
+              <div class="abt-top">
+                  <div class="abt-lft">
+                      <img src="./../img/p3.jpg" class="img-responsive" alt="">
+                  </div>
+                  <div class="abt-rgt">
+                      <h4><a href="/disease?id={{id}}">{{disease}}</a></h4>
+                      <p>{{introduction}}</p>
+                  </div>
+                  <div class="clearfix"></div>
+              </div>
+          {{/each}}
         </div>
         <div class="col-md-5 about-right">
-
             <h5>Learning List</h5>
             <ul>
-                <li><a href="#"><span></span>Cardiology </a></li>
-                <li><a href="#"><span></span>Check-Up Examinations </a></li>
-                <li><a href="#"><span></span>Urgent Surgery</a></li>
-                <li><a href="#"><span></span>Ask a Best Doctor </a></li>
-                <li><a href="#"><span></span>Nutrition & Supplements </a></li>
-                <li><a href="#"><span></span>Careers </a></li>
-                <li><a href="#"><span></span>Free Consulting</a></li>
-                <li><a href="#"><span></span>Special Treatments</a></li>
+              {{#each data.list}}
+                  <li><a href="/disease?id={{id}}"><span></span>{{disease}}</a></li>
+              {{/each}}
             </ul>
 
         </div>
+
         <div class="clearfix"></div>
     </div>
 </div>
