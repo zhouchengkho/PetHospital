@@ -38,30 +38,27 @@
 <script src="/js/3d/three.js"></script>
 <script src="/js/3d/Projector.js"></script>
 <script src="/js/3d/CanvasRenderer.js"></script>
-<script src="/js/3d/CSS3DRenderer.js"></script>
 
 <div id="menu">
 
 
-    <div class="g-left inline">
-        <a href="./../img/8.jpg" rel="title" class="b-link-stripe b-animate-go  thickbox">
+    <div class="g-left inline" id="room1">
+        <a href="./../img/8.jpg" title="科室 1">
             <button id="table">Reception</button>
-            <figcaption>
-
-            </figcaption>
-            </figure>
         </a>
     </div>
-    <div class="g-left inline">
-        <a href="./../img/8.jpg" rel="title" class="b-link-stripe b-animate-go  thickbox">
+    <div class="g-left inline" id="room2">
+        <a href="./../img/9.jpg" title="科室 2">
             <button id="table">Reception</button>
-            <figcaption>
-
-            </figcaption>
-            </figure>
         </a>
     </div>
 </div>
+
+<script>
+    $('#room1 a').Chocolat();
+    $('#room2 a').Chocolat();
+
+</script>
 
 <script>
 
@@ -73,7 +70,9 @@
             lon = 90, onMouseDownLon = 0,
             lat = 0, onMouseDownLat = 0,
             phi = 0, theta = 0,
+            move = 0,
             target = new THREE.Vector3();
+    var status = 0
 
     init();
     animate();
@@ -82,28 +81,63 @@
 
         var container, mesh;
 
-        container = document.getElementById( 'container' );
+        container = document.getElementById('container');
 
-        camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1100 );
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1100);
 
         scene = new THREE.Scene();
 
-        texture_placeholder = document.createElement( 'canvas' );
+        texture_placeholder = document.createElement('canvas');
         texture_placeholder.width = 128;
         texture_placeholder.height = 128;
 
-        var context = texture_placeholder.getContext( '2d' );
+        var context = texture_placeholder.getContext('2d');
         context.fillStyle = 'rgb( 200, 200, 200 )';
-        context.fillRect( 0, 0, texture_placeholder.width, texture_placeholder.height );
+        context.fillRect(0, 0, texture_placeholder.width, texture_placeholder.height);
+
+        loadMesh('0')
+
+        //.....
+
+        //        var mesh2 = new THREE.Mesh( new THREE.BoxGeometry( 50, 50, 50, 30, 30, 30 ) );
+        //mesh2.scale.x = -1;
+        //scene.add(mesh2);
+
+        //.....
+
+        renderer = new THREE.CanvasRenderer();
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
+
+        document.addEventListener('mousedown', onDocumentMouseDown, false);
+        document.addEventListener('mousemove', onDocumentMouseMove, false);
+        document.addEventListener('mouseup', onDocumentMouseUp, false);
+        document.addEventListener('wheel', onDocumentMouseWheel, false);
+
+        document.addEventListener('touchstart', onDocumentTouchStart, false);
+        document.addEventListener('touchmove', onDocumentTouchMove, false);
+        //
+
+        window.addEventListener('resize', onWindowResize, false);
+
+    }
+
+
+    function loadMesh(folderName) {
+        if (folderName != '') { folderName = folderName + '/' }
+
+        var meshObj = scene.getObjectByName('mesh');
+        scene.remove(meshObj);
 
         var materials = [
 
-            loadTexture( '/js/3d/texture/px.jpg' ), // right
-            loadTexture( '/js/3d/texture/nx.jpg' ), // left
-            loadTexture( '/js/3d/texture/py.jpg' ), // top
-            loadTexture( '/js/3d/texture/ny.jpg' ), // bottom
-            loadTexture( '/js/3d/texture/pz.jpg' ), // back
-            loadTexture( '/js/3d/texture/nz.jpg' )  // front
+            loadTexture( '/js/3d/texture/' + folderName + 'px.jpg' ), // right
+            loadTexture( '/js/3d/texture/' + folderName + 'nx.jpg' ), // left
+            loadTexture( '/js/3d/texture/' + folderName + 'py.jpg' ), // top
+            loadTexture( '/js/3d/texture/' + folderName + 'ny.jpg' ), // bottom
+            loadTexture( '/js/3d/texture/' + folderName + 'pz.jpg' ), // back
+            loadTexture( '/js/3d/texture/' + folderName + 'nz.jpg' )  // front
 
         ];
 
@@ -111,52 +145,7 @@
         mesh.name = 'mesh';
         mesh.scale.x = -1;
         scene.add( mesh );
-
-        //.....
-
-  //        var mesh2 = new THREE.Mesh( new THREE.BoxGeometry( 50, 50, 50, 30, 30, 30 ) );
-        //mesh2.scale.x = -1;
-        //scene.add(mesh2);
-
-        //.....
-
-        renderer = new THREE.CanvasRenderer();
-        renderer.setPixelRatio( window.devicePixelRatio );
-        renderer.setSize( window.innerWidth, window.innerHeight );
-        container.appendChild( renderer.domElement );
-
-        document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-        document.addEventListener( 'mouseup', onDocumentMouseUp, false );
-        document.addEventListener( 'wheel', onDocumentMouseWheel, false );
-
-        document.addEventListener( 'touchstart', onDocumentTouchStart, false );
-        document.addEventListener( 'touchmove', onDocumentTouchMove, false );
-        //
-
-        window.addEventListener( 'resize', onWindowResize, false );
-
     }
-
-
-//    function loadMesh(folderName) {
-//        folderName = folderName + '/'
-//        var materials = [
-//
-//            loadTexture( '/js/3d/texture/' + folderName + 'px.jpg' ), // right
-//            loadTexture( '/js/3d/texture/' + folderName + 'nx.jpg' ), // left
-//            loadTexture( '/js/3d/texture/py.jpg' ), // top
-//            loadTexture( '/js/3d/texture/ny.jpg' ), // bottom
-//            loadTexture( '/js/3d/texture/pz.jpg' ), // back
-//            loadTexture( '/js/3d/texture/nz.jpg' )  // front
-//
-//        ];
-//
-//        mesh = new THREE.Mesh( new THREE.BoxGeometry( 300, 300, 300, 30, 30, 30 ), new THREE.MultiMaterial( materials ) );
-//        mesh.name = 'mesh';
-//        mesh.scale.x = -1;
-//        scene.add( mesh );
-//    }
 
     function onWindowResize() {
 
@@ -205,34 +194,31 @@
         if ( isUserInteracting === true ) {
             lon = ( onPointerDownPointerX - event.clientX ) * 0.1 + onPointerDownLon
 
+
         }
 
 
     }
 
-    function onDocumentMouseUp( event ) {
+    function onDocumentMouseUp(event) {
 
         event.preventDefault();
         if (onPointerDownLon == lon) {
+            var tmp = event.clientX + move
+            var y = event.clientY
+            if (status == 0 && tmp < 1600 && tmp > 1200 && y > 450 && y < 550) {
 
-//            var meshObj = scene.getObjectByName('mesh');
-//            scene.remove(meshObj);
-//            var materials = [
-//
-//                loadTexture( '/js/3d/texture/1/px.jpg' ), // right
-//                loadTexture( '/js/3d/texture/1/nx.jpg' ), // left
-//                loadTexture( '/js/3d/texture/1/py.jpg' ), // top
-//                loadTexture( '/js/3d/texture/1/ny.jpg' ), // bottom
-//                loadTexture( '/js/3d/texture/1/pz.jpg' ), // back
-//                loadTexture( '/js/3d/texture/1/nz.jpg' )  // front
-//
-//            ];
-//            mesh = new THREE.Mesh( new THREE.BoxGeometry( 300, 300, 300, 30, 30, 30 ), new THREE.MultiMaterial( materials ) );
-//            mesh.scale.x = -1;
-//            scene.add(mesh)
-//
-//            alert(onPointerDownLon)
+                loadMesh('1')
+                status = 1
+            }
+            else if (status == 1 && tmp > 1150 && tmp < 1550 && y > 450 && y < 550) {
+                loadMesh('0')
+                status = 0
+            }
 
+        }
+        else {
+          move += (onPointerDownPointerX - event.clientX)
         }
         isUserInteracting = false;
     }
@@ -277,21 +263,21 @@
 
     function update() {
 
-        if ( isUserInteracting === false ) {
+        if (isUserInteracting === false) {
 
-            lon += 0.01;
-
+            lon += 0.05;
+            move += 0.5;
         }
 
-        lat = Math.max( - 85, Math.min( 85, lat ) );
-        phi = THREE.Math.degToRad( 90 - lat );
-        theta = THREE.Math.degToRad( lon );
+        lat = Math.max(-85, Math.min(85, lat));
+        phi = THREE.Math.degToRad(90 - lat);
+        theta = THREE.Math.degToRad(lon);
 
-        target.x = 500 * Math.sin( phi ) * Math.cos( theta );
-        target.y = 500 * Math.cos( phi );
-        target.z = 500 * Math.sin( phi ) * Math.sin( theta );
+        target.x = 500 * Math.sin(phi) * Math.cos(theta);
+        target.y = 500 * Math.cos(phi);
+        target.z = 500 * Math.sin(phi) * Math.sin(theta);
 
-        camera.lookAt( target );
+        camera.lookAt(target);
 
         renderer.render( scene, camera );
 
