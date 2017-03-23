@@ -155,10 +155,10 @@
     function init() {
 
         camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 5);
-
         camera.position.z = 3000;
 
-        scene = new THREE.Scene();
+
+        scene = new THREE.Scene()
 
         // table
 
@@ -220,11 +220,11 @@
 
             spherical.set(800, phi, theta);
 
-
             object.position.setFromSpherical(spherical);
+            object.position.y += 150
 
             vector.copy(object.position).multiplyScalar(2);
-
+            vector.y -= 150
             object.lookAt(vector);
 
             targets.sphere.push(object);

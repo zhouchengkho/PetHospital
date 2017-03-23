@@ -1,4 +1,4 @@
-﻿/*
+﻿﻿/*
  Inspired by the lightbox plugin adapted to jquery by Leandro Vieira Pinho (http://leandrovieira.com)
 
  @author  : Nicolas Turlais : nicolas-at-insipi.de
