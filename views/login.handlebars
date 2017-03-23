@@ -1,61 +1,74 @@
+<!doctype html>
+<html lang="en">
 
-<link rel="stylesheet" href="css/login.css">
-<script>$('#navbar').hide()</script>
-<div class="banner" id="home">
+<head>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="./../css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link href="./../css/style.css" rel='stylesheet' type='text/css'/>
+    <script src="./../js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
+    <script src="./../js/modernizr.custom.97074.js"></script>
+</head>
+<body>
 
-<div class="login-wrap">
-    <div class="login-html">
-        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
-        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
-        <div class="login-form">
-            <div class="sign-in-htm">
-                <div class="group">
-                    <label for="user" class="label">Username</label>
-                    <input id="user" type="text" class="input">
+<video loop autoplay>
+    <source src="img/video.mp4" type="video/mp4">
+</video>
+
+<div id="home" style="position: fixed; top: 0; width: 100%; height: 100%; z-index: 1;">
+    <div class="login-wrap">
+        <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign
+            In</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+            <div class="login-form">
+                <div class="sign-in-htm">
+                    <div class="group">
+                        <label for="user" class="label">Username</label>
+                        <input id="user" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Password</label>
+                        <input id="pass" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <input id="check" type="checkbox" class="check" checked>
+                        <label for="check"><span class="icon"></span> Keep me Signed in </label>
+                    </div>
+                    <div class="group">
+                        <input type="submit" class="button" value="Sign In" id="login">
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <label for="tab-2">Forgot Password?</label>
+                    </div>
                 </div>
-                <div class="group">
-                    <label for="pass" class="label">Password</label>
-                    <input id="pass" type="password" class="input" data-type="password">
-                </div>
-                <div class="group">
-                    <input id="check" type="checkbox" class="check" checked>
-                    <label for="check"><span class="icon"></span> Keep me Signed in </label>
-                </div>
-                <div class="group">
-                    <input type="submit" class="button" value="Sign In" id="login">
-                </div>
-                <div class="hr"></div>
-                <div class="foot-lnk">
-                    <label for="tab-2">Forgot Password?</label>
-                </div>
-            </div>
-            <div class="sign-up-htm">
-                <div class="group">
-                    <label for="user" class="label">Username</label>
-                    <input id="user" type="text" class="input">
-                </div>
-                <div class="group">
-                    <label for="pass" class="label">Password</label>
-                    <input id="pass" type="password" class="input" data-type="password">
-                </div>
-                <!--<div class="group">-->
-                    <!--<label for="pass" class="label">Repeat Password</label>-->
-                    <!--<input id="pass" type="password" class="input" data-type="password">-->
-                <!--</div>-->
-                <div class="group">
-                    <input type="submit" class="button" value="Sign Up" id="sign_up">
-                </div>
-                <div class="hr"></div>
-                <div class="foot-lnk">
-                    <label for="tab-1">Already Member?</label>
+                <div class="sign-up-htm">
+                    <div class="group">
+                        <label for="user" class="label">Username</label>
+                        <input id="user" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Password</label>
+                        <input id="pass" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <input type="submit" class="button" value="Sign Up" id="sign_up">
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <label for="tab-1">Already Member?</label>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
 
 <script>
-    var hi = window.screen.height - 97;
-    document.getElementById("home").style.height=hi+"px";
+    let hi = window.screen.height - 97;
+    document.getElementById("home").style.height = hi + "px";
 </script>
+</body>
+</html>
