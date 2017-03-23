@@ -5,68 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <style>
-        html, body {
-            height: 100%;
-        }
-
-        body {
-            background-color: #111f33;
-            margin: 0;
-            font-family: Helvetica, sans-serif;;
-            overflow: hidden;
-        }
-
-        a {
-            color: #333333;
-        }
 
         #menu {
             position: absolute;
             bottom: 20px;
             width: 100%;
             text-align: center;
-        }
-
-        .element {
-            width: 400px;
-            height: 300px;
-            box-shadow: 0px 0px 12px #ffc300;
-            border: 1px solid #ffc300;
-            text-align: center;
-            cursor: default;
-        }
-
-        .element:hover {
-            box-shadow: 0px 0px 30px #bfff00;
-            border: 1px solid #bfff00;
-        }
-
-        .element .number {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 12px;
-            color: #ffc300;
-        }
-
-        .element .symbol {
-            position: absolute;
-            top: 40px;
-            left: 0px;
-            right: 0px;
-            font-size: 60px;
-            font-weight: bold;
-            color: #ffc300;
-            text-shadow: 0 0 10px #ffc300;
-        }
-
-        .element .details {
-            position: absolute;
-            bottom: 15px;
-            left: 0px;
-            right: 0px;
-            font-size: 12px;
-            color: #ffc300;
         }
 
         button {
@@ -92,14 +36,33 @@
 
 <div id="container"></div>
 <script src="/js/3d/three.js"></script>
-
 <script src="/js/3d/Projector.js"></script>
 <script src="/js/3d/CanvasRenderer.js"></script>
 <script src="/js/3d/CSS3DRenderer.js"></script>
+
 <div id="menu">
-    <button id="table">TABLE</button>
-    <button id="sphere">SPHERE</button>
+
+
+    <div class="g-left inline">
+        <a href="./../img/8.jpg" rel="title" class="b-link-stripe b-animate-go  thickbox">
+            <button id="table">Reception</button>
+            <figcaption>
+
+            </figcaption>
+            </figure>
+        </a>
+    </div>
+    <div class="g-left inline">
+        <a href="./../img/8.jpg" rel="title" class="b-link-stripe b-animate-go  thickbox">
+            <button id="table">Reception</button>
+            <figcaption>
+
+            </figcaption>
+            </figure>
+        </a>
+    </div>
 </div>
+
 <script>
 
     var camera, scene, renderer;
@@ -144,18 +107,18 @@
 
         ];
 
-        mesh = new THREE.Mesh( new THREE.BoxGeometry( 300, 300, 300, 7, 7, 7 ), new THREE.MultiMaterial( materials ) );
-        mesh.scale.x = - 1;
+        mesh = new THREE.Mesh( new THREE.BoxGeometry( 300, 300, 300, 30, 30, 30 ), new THREE.MultiMaterial( materials ) );
+        mesh.name = 'mesh';
+        mesh.scale.x = -1;
         scene.add( mesh );
 
-
         //.....
 
+  //        var mesh2 = new THREE.Mesh( new THREE.BoxGeometry( 50, 50, 50, 30, 30, 30 ) );
+        //mesh2.scale.x = -1;
+        //scene.add(mesh2);
 
         //.....
-
-
-
 
         renderer = new THREE.CanvasRenderer();
         renderer.setPixelRatio( window.devicePixelRatio );
@@ -165,16 +128,35 @@
         document.addEventListener( 'mousedown', onDocumentMouseDown, false );
         document.addEventListener( 'mousemove', onDocumentMouseMove, false );
         document.addEventListener( 'mouseup', onDocumentMouseUp, false );
-        //document.addEventListener( 'wheel', onDocumentMouseWheel, false );
+        document.addEventListener( 'wheel', onDocumentMouseWheel, false );
 
         document.addEventListener( 'touchstart', onDocumentTouchStart, false );
         document.addEventListener( 'touchmove', onDocumentTouchMove, false );
-
         //
 
         window.addEventListener( 'resize', onWindowResize, false );
 
     }
+
+
+//    function loadMesh(folderName) {
+//        folderName = folderName + '/'
+//        var materials = [
+//
+//            loadTexture( '/js/3d/texture/' + folderName + 'px.jpg' ), // right
+//            loadTexture( '/js/3d/texture/' + folderName + 'nx.jpg' ), // left
+//            loadTexture( '/js/3d/texture/py.jpg' ), // top
+//            loadTexture( '/js/3d/texture/ny.jpg' ), // bottom
+//            loadTexture( '/js/3d/texture/pz.jpg' ), // back
+//            loadTexture( '/js/3d/texture/nz.jpg' )  // front
+//
+//        ];
+//
+//        mesh = new THREE.Mesh( new THREE.BoxGeometry( 300, 300, 300, 30, 30, 30 ), new THREE.MultiMaterial( materials ) );
+//        mesh.name = 'mesh';
+//        mesh.scale.x = -1;
+//        scene.add( mesh );
+//    }
 
     function onWindowResize() {
 
@@ -203,6 +185,7 @@
 
     }
 
+
     function onDocumentMouseDown( event ) {
         event.preventDefault();
 
@@ -214,34 +197,49 @@
 
         onPointerDownLon = lon;
         onPointerDownLat = lat;
-
-
     }
 
     function onDocumentMouseMove( event ) {
 
+        event.preventDefault();
         if ( isUserInteracting === true ) {
-
-            lon = ( onPointerDownPointerX - event.clientX ) * 0.1 + onPointerDownLon;
-            lat = ( event.clientY - onPointerDownPointerY ) * 0.1 + onPointerDownLat;
+            lon = ( onPointerDownPointerX - event.clientX ) * 0.1 + onPointerDownLon
 
         }
+
 
     }
 
     function onDocumentMouseUp( event ) {
 
-        isUserInteracting = false;
+        event.preventDefault();
+        if (onPointerDownLon == lon) {
 
+//            var meshObj = scene.getObjectByName('mesh');
+//            scene.remove(meshObj);
+//            var materials = [
+//
+//                loadTexture( '/js/3d/texture/1/px.jpg' ), // right
+//                loadTexture( '/js/3d/texture/1/nx.jpg' ), // left
+//                loadTexture( '/js/3d/texture/1/py.jpg' ), // top
+//                loadTexture( '/js/3d/texture/1/ny.jpg' ), // bottom
+//                loadTexture( '/js/3d/texture/1/pz.jpg' ), // back
+//                loadTexture( '/js/3d/texture/1/nz.jpg' )  // front
+//
+//            ];
+//            mesh = new THREE.Mesh( new THREE.BoxGeometry( 300, 300, 300, 30, 30, 30 ), new THREE.MultiMaterial( materials ) );
+//            mesh.scale.x = -1;
+//            scene.add(mesh)
+//
+//            alert(onPointerDownLon)
+
+        }
+        isUserInteracting = false;
     }
 
     function onDocumentMouseWheel( event ) {
-
-        camera.fov += event.deltaY * 0.05;
-        camera.updateProjectionMatrix();
-
+        event.preventDefault();
     }
-
 
     function onDocumentTouchStart( event ) {
 
@@ -254,7 +252,6 @@
 
             onPointerDownLon = lon;
             onPointerDownLat = lat;
-
         }
 
     }
@@ -266,7 +263,6 @@
             event.preventDefault();
 
             lon = ( onPointerDownPointerX - event.touches[0].pageX ) * 0.1 + onPointerDownLon;
-            lat = ( event.touches[0].pageY - onPointerDownPointerY ) * 0.1 + onPointerDownLat;
 
         }
 
@@ -274,7 +270,7 @@
 
     function animate() {
 
-        requestAnimationFrame( animate );
+        requestAnimationFrame(animate);
         update();
 
     }
