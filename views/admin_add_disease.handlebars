@@ -74,11 +74,11 @@
             "type": Class,
             "introduction": introduction
         };
-        API.add_disease(data, function(err, result) {
-          if(!err) {
-              $.toaster({ priority : 'success', title : 'Success', message : 'Yo' });
-            window.location.href = '/disease?id='+JSON.parse(result).id
-          }
+        API.add_disease(data, function (err, result) {
+            if (!err) {
+                $.toaster({priority: 'success', title: 'Success', message: 'Yo'});
+                window.location.href = '/disease?id=' + JSON.parse(result).id
+            }
         });
     }
 </script>

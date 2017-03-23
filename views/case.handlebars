@@ -22,7 +22,6 @@
                 <li class="active"><a href="#tab1" data-toggle="tab" aria-expanded="true">诊断结果</a></li>
                 <li><a href="#tab2" data-toggle="tab">治疗手段</a></li>
             </ul>
-
             <div class="tab-content" id="tabs">
                 <div class="tab-pane about active" id="tab1">
                     <div class="input-group">
@@ -31,13 +30,12 @@
                                                                              type="button">提交</button></span>
                     </div><!-- /input-group -->
 
-                    <ul class="list-group" id="treat_list">
+                    <ul class="list-group" id="treat_list" style="margin-top: 30px">
                         {{#each treatment}}
                             <li class="list-group-item">
                                 <div class="row">
-                                    <div class="col-md-4">{{this.date}} </div>
-                                    <div class="col-md-4 col-md-offset-2"> {{this.content}}</div>
-
+                                    <div class="col-md-6">{{this.content}} </div>
+                                    <div class="col-md-2 col-md-offset-4"> {{this.date}}</div>
                                 </div>
                             </li>
                         {{/each}}
@@ -63,21 +61,27 @@
         let treat_list = [];
         let id = $("#case_id").text();
         let record = $("#treat_record").val();
-
         let data = {
             "id": id,
             "content": record
         };
         API.add_treatment(data, (err, result) => {
             if (!err) {
+                $.toaster({priority: 'success', title: 'Success', message: 'Yo'});
                 $("ul#treat_list li").remove("li");//clear element
                 result.forEach((element) => {
-                    console.log(element);
-                    $("ul#treat_list").append("<li class=\"list-group-item\">" + element.date + element.content + "</li>");
+                    $("ul#treat_list").append("<li class=\"list-group-item\">"
+                            + "<div class=\"row\">"
+                            + "<div class=\"col-md-6\">" + element.content + "</div>"
+                            + "<div class=\"col-md-2 col-md-offset-4\">" + element.date + "</div>"
+                            + "</div>"
+                            + "</li>");
                 });
+            } else {
+                $.toaster({priority: 'danger', title: 'Network Error', message: 'Yo'});
+
             }
         });
-
     });
 
 
