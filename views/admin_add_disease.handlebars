@@ -72,12 +72,15 @@
         var data = {
             "disease": name,
             "type": Class,
-            "introduction": introduction
+            "introduction": introduction,
+            "image": image
         };
         API.add_disease(data, function (err, result) {
             if (!err) {
                 $.toaster({priority: 'success', title: 'Success', message: 'Yo'});
                 window.location.href = '/disease?id=' + JSON.parse(result).id
+            } else {
+                $.toaster({priority: 'danger', title: 'Error', message: err.message});
             }
         });
     }

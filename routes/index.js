@@ -115,7 +115,8 @@ router.get('/learn/assistant', (req, res) => {
 });
 
 router.get('/profile', (req, res) => {
-  var result = {}request.get({
+  var result = {}
+  request.get({
     url: baseUrl + '/user/profile',
     headers: {
       token: req.session.login.token

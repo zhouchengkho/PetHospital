@@ -67,11 +67,13 @@
             "image": image,
             "received": true
         };
-        console.log(data)
-//        API.add_case(data, function(err, result) {
-//            if(!err) {
-//                window.location.href = '/case?id='+result.id
-//            }
-//        });
+//        console.log(data)
+        API.add_case(data, function(err, result) {
+            if(!err) {
+              window.location.href = '/case?id='+JSON.parse(result).id
+            } else {
+              $.toaster({priority: 'danger', title: 'Error', message: err.message});
+            }
+        });
     }
 </script>

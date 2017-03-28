@@ -63,6 +63,8 @@ router.post('/login', (req, res) => {
     name: req.body.username,
     password: req.body.password
   };
+
+  console.log(form)
   request.post({
     url: baseUrl + '/login',
     form: form,
