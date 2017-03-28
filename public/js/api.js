@@ -2,7 +2,7 @@
  * Created by zhoucheng on 3/1/17.
  */
 
-const baseUrl = "http://172.30.198.245:8080";
+const baseUrl = "http://52.187.170.117:8080";
 
 function API() {
     const prefix = 'http://localhost:8080';
@@ -108,6 +108,10 @@ function API() {
     this.add_treatment = function (params, callback) {
         post('/case/treatment/add', params, callback);
     };
+
+  this.add_result = function (params, callback) {
+    post('/case/result/add', params, callback);
+  };
 
 
     this.register = function (params, callback) {

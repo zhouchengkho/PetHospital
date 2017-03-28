@@ -31,8 +31,7 @@
                 <div class="tab-pane about active" id="tab1">
                     <div class="input-group">
                         <input id="treat_record" type="text" class="form-control" placeholder="新增记录" required>
-                        <span id="treat_btn" class="input-group-btn"><button class="btn btn-default"
-                                                                             type="button">提交</button></span>
+                        <span id="treat_btn" class="input-group-btn"><button class="btn btn-default" type="button">提交</button></span>
                     </div><!-- /input-group -->
 
                     <ul class="list-group" id="treat_list" style="margin-top: 30px">
@@ -47,11 +46,20 @@
                     </ul>
                 </div>
                 <div class="tab-pane about" id="tab2">
-                    <div class="panel panel-info" style="margin-top: 10px;">
-                        <div class="panel-body">
-                            {{result}}
-                        </div>
-                    </div>
+                    <div class="input-group">
+                        <input id="result" type="text" class="form-control" placeholder="修改结果" required>
+                        <span id="result_btn" class="input-group-btn"><button class="btn btn-default" type="button">提交</button></span>
+                    </div><!-- /input-group -->
+                    <ul class="list-group" id="result_list" style="margin-top: 30px">
+                      {{#each result}}
+                          <li class="list-group-item">
+                              <div class="row">
+                                  <div class="col-md-6">{{this.content}} </div>
+                                  <div class="col-md-2 col-md-offset-4"> {{this.date}}</div>
+                              </div>
+                          </li>
+                      {{/each}}
+                    </ul>
                 </div>
             </div>
         </div>
@@ -85,6 +93,33 @@
             } else {
                 $.toaster({priority: 'danger', title: 'Network Error', message: '添加失败'});
 
+            }
+        });
+    });
+
+    $("#result_btn").click(() => {
+        let treat_list = [];
+        let id = $("#case_id").text();
+        let record = $("#result").val();
+        let data = {
+            "id": id,
+            "content": record
+        };
+        API.add_result(data, (err, result) => {
+            if (!err) {
+              console.log(result)
+                $.toaster({priority: 'success', title: 'Success', message: '添加成功'});
+                $("#result_list").remove("li");//clear element
+                result.forEach((element) => {
+                    $("#result_list").append("<li class=\"list-group-item\">"
+                            + "<div class=\"row\">"
+                            + "<div class=\"col-md-6\">" + element.content + "</div>"
+                            + "<div class=\"col-md-2 col-md-offset-4\">" + element.date + "</div>"
+                            + "</div>"
+                            + "</li>");
+                });
+            } else {
+                $.toaster({priority: 'danger', title: 'Network Error', message: '添加失败'});
             }
         });
     });
