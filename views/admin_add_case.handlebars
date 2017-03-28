@@ -62,13 +62,16 @@
         var name = $('#name').val();
         var type = $('#type option:selected').text();
         var data = {
-            "disease": name,
-            "type": type
+            "disease_name": type,
+            "name": name,
+            "image": image,
+            "received": true
         };
-        API.add_case(data, function(err, result) {
-            if(!err) {
-                window.location.href = '/case?id='+result.id
-            }
-        });
+        console.log(data)
+//        API.add_case(data, function(err, result) {
+//            if(!err) {
+//                window.location.href = '/case?id='+result.id
+//            }
+//        });
     }
 </script>

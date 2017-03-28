@@ -11,7 +11,7 @@ $(document).ready(function() {
     }
     API.login(params, function(err, result){
       if(err)
-        alert('login fail')
+        $.toaster({priority: 'danger', title: 'Login Failed', message: err.message});
       else {
           location.href = '/'
       }
@@ -26,8 +26,9 @@ $(document).ready(function() {
     // alert(JSON.stringify(params))
     API.register(params, function(err, result){
       if(err)
-        alert('register fail')
+        $.toaster({priority: 'danger', title: 'Register Failed', message: err.message});
       else {
+        $.toaster({priority: 'success', title: 'Register Success', message: 'Login now!'});
         location.href = '/login'
       }
     })

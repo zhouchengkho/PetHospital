@@ -38,7 +38,6 @@
 <script src="/js/3d/three.js"></script>
 <script src="/js/3d/Projector.js"></script>
 <script src="/js/3d/CanvasRenderer.js"></script>
-<script src="/js/3d/CSS3DRenderer.js"></script>
 
 <div id="menu">
 
@@ -71,7 +70,9 @@
             lon = 90, onMouseDownLon = 0,
             lat = 0, onMouseDownLat = 0,
             phi = 0, theta = 0,
+            move = 0,
             target = new THREE.Vector3();
+    var status = 0
 
     init();
     animate();
@@ -94,21 +95,7 @@
         context.fillStyle = 'rgb( 200, 200, 200 )';
         context.fillRect(0, 0, texture_placeholder.width, texture_placeholder.height);
 
-        var materials = [
-
-            loadTexture('/js/3d/texture/px.jpg'), // right
-            loadTexture('/js/3d/texture/nx.jpg'), // left
-            loadTexture('/js/3d/texture/py.jpg'), // top
-            loadTexture('/js/3d/texture/ny.jpg'), // bottom
-            loadTexture('/js/3d/texture/pz.jpg'), // back
-            loadTexture('/js/3d/texture/nz.jpg')  // front
-
-        ];
-
-        mesh = new THREE.Mesh(new THREE.BoxGeometry(300, 300, 300, 30, 30, 30), new THREE.MultiMaterial(materials));
-        mesh.name = 'mesh';
-        mesh.scale.x = -1;
-        scene.add(mesh);
+        loadMesh('0')
 
         //.....
 
@@ -137,38 +124,42 @@
     }
 
 
-    //    function loadMesh(folderName) {
-    //        folderName = folderName + '/'
-    //        var materials = [
-    //
-    //            loadTexture( '/js/3d/texture/' + folderName + 'px.jpg' ), // right
-    //            loadTexture( '/js/3d/texture/' + folderName + 'nx.jpg' ), // left
-    //            loadTexture( '/js/3d/texture/py.jpg' ), // top
-    //            loadTexture( '/js/3d/texture/ny.jpg' ), // bottom
-    //            loadTexture( '/js/3d/texture/pz.jpg' ), // back
-    //            loadTexture( '/js/3d/texture/nz.jpg' )  // front
-    //
-    //        ];
-    //
-    //        mesh = new THREE.Mesh( new THREE.BoxGeometry( 300, 300, 300, 30, 30, 30 ), new THREE.MultiMaterial( materials ) );
-    //        mesh.name = 'mesh';
-    //        mesh.scale.x = -1;
-    //        scene.add( mesh );
-    //    }
+    function loadMesh(folderName) {
+        if (folderName != '') { folderName = folderName + '/' }
+
+        var meshObj = scene.getObjectByName('mesh');
+        scene.remove(meshObj);
+
+        var materials = [
+
+            loadTexture( '/js/3d/texture/' + folderName + 'px.jpg' ), // right
+            loadTexture( '/js/3d/texture/' + folderName + 'nx.jpg' ), // left
+            loadTexture( '/js/3d/texture/' + folderName + 'py.jpg' ), // top
+            loadTexture( '/js/3d/texture/' + folderName + 'ny.jpg' ), // bottom
+            loadTexture( '/js/3d/texture/' + folderName + 'pz.jpg' ), // back
+            loadTexture( '/js/3d/texture/' + folderName + 'nz.jpg' )  // front
+
+        ];
+
+        mesh = new THREE.Mesh( new THREE.BoxGeometry( 300, 300, 300, 30, 30, 30 ), new THREE.MultiMaterial( materials ) );
+        mesh.name = 'mesh';
+        mesh.scale.x = -1;
+        scene.add( mesh );
+    }
 
     function onWindowResize() {
 
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
 
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize( window.innerWidth, window.innerHeight );
 
     }
 
-    function loadTexture(path) {
+    function loadTexture( path ) {
 
-        var texture = new THREE.Texture(texture_placeholder);
-        var material = new THREE.MeshBasicMaterial({map: texture, overdraw: 0.5});
+        var texture = new THREE.Texture( texture_placeholder );
+        var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: 0.5 } );
 
         var image = new Image();
         image.onload = function () {
@@ -184,7 +175,7 @@
     }
 
 
-    function onDocumentMouseDown(event) {
+    function onDocumentMouseDown( event ) {
         event.preventDefault();
 
         isUserInteracting = true;
@@ -197,11 +188,12 @@
         onPointerDownLat = lat;
     }
 
-    function onDocumentMouseMove(event) {
+    function onDocumentMouseMove( event ) {
 
         event.preventDefault();
-        if (isUserInteracting === true) {
+        if ( isUserInteracting === true ) {
             lon = ( onPointerDownPointerX - event.clientX ) * 0.1 + onPointerDownLon
+
 
         }
 
@@ -212,41 +204,37 @@
 
         event.preventDefault();
         if (onPointerDownLon == lon) {
+            var tmp = event.clientX + move
+            var y = event.clientY
+            if (status == 0 && tmp < 1600 && tmp > 1200 && y > 450 && y < 550) {
 
-//            var meshObj = scene.getObjectByName('mesh');
-//            scene.remove(meshObj);
-//            var materials = [
-//
-//                loadTexture( '/js/3d/texture/1/px.jpg' ), // right
-//                loadTexture( '/js/3d/texture/1/nx.jpg' ), // left
-//                loadTexture( '/js/3d/texture/1/py.jpg' ), // top
-//                loadTexture( '/js/3d/texture/1/ny.jpg' ), // bottom
-//                loadTexture( '/js/3d/texture/1/pz.jpg' ), // back
-//                loadTexture( '/js/3d/texture/1/nz.jpg' )  // front
-//
-//            ];
-//            mesh = new THREE.Mesh( new THREE.BoxGeometry( 300, 300, 300, 30, 30, 30 ), new THREE.MultiMaterial( materials ) );
-//            mesh.scale.x = -1;
-//            scene.add(mesh)
-//
-//            alert(onPointerDownLon)
+                loadMesh('1')
+                status = 1
+            }
+            else if (status == 1 && tmp > 1150 && tmp < 1550 && y > 450 && y < 550) {
+                loadMesh('0')
+                status = 0
+            }
 
+        }
+        else {
+          move += (onPointerDownPointerX - event.clientX)
         }
         isUserInteracting = false;
     }
 
-    function onDocumentMouseWheel(event) {
+    function onDocumentMouseWheel( event ) {
         event.preventDefault();
     }
 
-    function onDocumentTouchStart(event) {
+    function onDocumentTouchStart( event ) {
 
-        if (event.touches.length == 1) {
+        if ( event.touches.length == 1 ) {
 
             event.preventDefault();
 
-            onPointerDownPointerX = event.touches[0].pageX;
-            onPointerDownPointerY = event.touches[0].pageY;
+            onPointerDownPointerX = event.touches[ 0 ].pageX;
+            onPointerDownPointerY = event.touches[ 0 ].pageY;
 
             onPointerDownLon = lon;
             onPointerDownLat = lat;
@@ -254,9 +242,9 @@
 
     }
 
-    function onDocumentTouchMove(event) {
+    function onDocumentTouchMove( event ) {
 
-        if (event.touches.length == 1) {
+        if ( event.touches.length == 1 ) {
 
             event.preventDefault();
 
@@ -277,8 +265,8 @@
 
         if (isUserInteracting === false) {
 
-            lon += 0.01;
-
+            lon += 0.05;
+            move += 0.5;
         }
 
         lat = Math.max(-85, Math.min(85, lat));
@@ -291,7 +279,7 @@
 
         camera.lookAt(target);
 
-        renderer.render(scene, camera);
+        renderer.render( scene, camera );
 
     }
 

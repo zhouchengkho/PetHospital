@@ -6,7 +6,7 @@
               <img src="./../img/p3.jpg" class="img-responsive" alt="">
           </div>
         <div class="margin-horizontal-16">
-            <h4>{{name}}</h4>
+            <h4>{{profile.name}}</h4>
         </div>
       </div>
         <div class="col-xs-8">
@@ -14,39 +14,22 @@
             <div class="new-user-avatar-cta mb-4 py-2 px-3">
                 <p class="mt-3">
                     My role is
-                    <strong> {{role}}</strong>
+                    <strong> {{profile.role}}</strong>
                 </p>
             </div>
           <!-- Tabs -->
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#tab1" data-toggle="tab" aria-expanded="true">Overall</a></li>
-                <li><a href="#tab2" data-toggle="tab">Learning List</a></li>
+                <li class="active"><a href="#tab1" data-toggle="tab" aria-expanded="true">Recommended Cases</a></li>
+                <!--<li><a href="#tab2" data-toggle="tab">Learning List</a></li>-->
             </ul>
             <div class="tab-content" id="tabs">
                 <div class="tab-pane about active" id="tab1">
                     <ul>
-                        <li><a href="#"><span></span>Cardiology </a></li>
-                        <li><a href="#"><span></span>Check-Up Examinations </a></li>
-                        <li><a href="#"><span></span>Urgent Surgery</a></li>
-                        <li><a href="#"><span></span>Ask a Best Doctor </a></li>
-                        <li><a href="#"><span></span>Nutrition &amp; Supplements </a></li>
-                        <li><a href="#"><span></span>Careers </a></li>
-                        <li><a href="#"><span></span>Free Consulting</a></li>
-                        <li><a href="#"><span></span>Special Treatments</a></li>
-                    </ul>                </div>
-                <div class="tab-pane about" id="tab2">
-                    <ul>
-                        <li><a href="#"><span></span>Cardiology </a></li>
-                        <li><a href="#"><span></span>Check-Up Examinations </a></li>
-                        <li><a href="#"><span></span>Urgent Surgery</a></li>
-                        <li><a href="#"><span></span>Ask a Best Doctor </a></li>
-                        <li><a href="#"><span></span>Nutrition &amp; Supplements </a></li>
-                        <li><a href="#"><span></span>Careers </a></li>
-                        <li><a href="#"><span></span>Free Consulting</a></li>
-                        <li><a href="#"><span></span>Special Treatments</a></li>
+                        {{#each case}}
+                            <li><a href="/case?id={{id}}"><span></span>{{name}} </a></li>
+                        {{/each}}
                     </ul>
                 </div>
-
             </div>
 
         </div>

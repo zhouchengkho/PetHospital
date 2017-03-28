@@ -160,7 +160,6 @@ THREE.CSS3DRenderer = function () {
 
 			if ( object instanceof THREE.CSS3DSprite ) {
 
-				// http://swiftcoder.wordpress.com/2008/11/25/constructing-a-billboard-matrix/
 
 				matrix.copy( camera.matrixWorldInverse );
 				matrix.transpose();

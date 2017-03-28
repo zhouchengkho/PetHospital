@@ -115,19 +115,34 @@ router.get('/learn/assistant', (req, res) => {
 });
 
 router.get('/profile', (req, res) => {
-    request.get({
-        url: baseUrl + '/user/profile',
+  var result = {}request.get({
+    url: baseUrl + '/user/profile',
+    headers: {
+      token: req.session.login.token
+    }
+  }, (err, httpResponse, body) => {
+    var data = JSON.parse(body)
+    console.log(data)
+    if(data.status != 200){
+      returnres.render('error', {message: data.message})
+    }else{
+      result.profile = data.data
+      request.get({
+        url: baseUrl + '/case',
         headers: {
-            token: req.session.login.token
+          token: req.session.login.token
         }
-    }, (err, httpResponse, body) => {
+      }, (err, httpResponse, body) => {
         var data = JSON.parse(body)
         console.log(data)
-        if (data.status != 200)
-            res.render('error', {message: data.message});
-        else
-            res.render('profile', data.data)
-    });
+        if(data.status != 200)res.render('error', {message: data.message});
+        else {
+          result.case =data.data.slice(0, 10);
+          res.render('profile', result)
+        }
+      });
+    }
+  });
     // res.render('profile')
 });
 
