@@ -109,7 +109,7 @@
             if (!err) {
               console.log(result)
                 $.toaster({priority: 'success', title: 'Success', message: '添加成功'});
-                $("#result_list").remove("li");//clear element
+                $("#result_list li").remove("li");//clear element
                 result.forEach((element) => {
                     $("#result_list").append("<li class=\"list-group-item\">"
                             + "<div class=\"row\">"

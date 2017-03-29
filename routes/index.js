@@ -125,7 +125,7 @@ router.get('/profile', (req, res) => {
         var data = JSON.parse(body)
         console.log(data)
         if (data.status != 200) {
-            returnres.render('error', {message: data.message})
+            return res.render('error', {message: data.message})
         } else {
             result.profile = data.data
             request.get({
