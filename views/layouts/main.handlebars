@@ -54,12 +54,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="text/javascript" src="/js/jquery.toaster.js"></script>
     <script src="/js/api.js"></script>
     <script src="./../js/jquery.chocolat.js"></script>
+    <script src="/js/spin.js"></script>
     <link rel="stylesheet" href="/css/chocolat.css" type="text/css" media="screen" charset="utf-8">
     <script>
         function logout() {
             API.logout('', function (err, result) {
-                if (result.status == 200)
-                    window.location.href = '/'
+              window.location.href = '/'
             })
         }
     </script>
@@ -90,7 +90,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li><a href="/list_case">Cases</a></li>
                     <li><a href="/list_disease">Disease</a></li>
                     <li><a href="/profile">Profile</a></li>
-                    <li><a onclick="logout()">Logout</a></li>
+                    <li><a onclick="logout()" style="cursor: pointer">Logout</a></li>
                 </ul>
             </div>
             <!--/.navbar-collapse-->

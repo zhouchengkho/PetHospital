@@ -12,6 +12,7 @@ var api = require('./routes/api');
 var admin = require('./routes/admin');
 var app = express();
 var uuid = require('uuid');
+
 var env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
 app.locals.ENV_DEVELOPMENT = env == 'development';
@@ -37,6 +38,8 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24
     }
 }));
+
+
 
 
 // app.use(favicon(__dirname + '/public/img/favicon.ico'));

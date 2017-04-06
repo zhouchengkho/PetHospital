@@ -1,6 +1,7 @@
 <div class="ourteam">
     <div class="container">
         <h6>Case</h6>
+        <p id="case_id" style="display: none">{{id}}</p>
         <div class="col-xs-4">
             <div>
                 <img src="{{image}}" class="img-responsive" alt="">
@@ -22,10 +23,12 @@
                     {{/if}}
                 </p>
             </div>
+
             <!-- Tabs -->
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#tab1" data-toggle="tab" aria-expanded="true">诊断结果</a></li>
                 <li><a href="#tab2" data-toggle="tab">治疗手段</a></li>
+                <li><a href="#video" data-toggle="tab">视频</a></li>
             </ul>
             <div class="tab-content" id="tabs">
                 <div class="tab-pane about active" id="tab1">
@@ -61,11 +64,27 @@
                       {{/each}}
                     </ul>
                 </div>
+                <div class="tab-pane about" id="video">
+                    <div>
+                        <video src="/video/{{id}}.mp4" style="width: 600px;" autoplay></video>
+                        <div id="spinner"></div>
+                    </div>
+                    <div>
+                        <button id="ul_btn">Select File</button>
+
+                        <input type="file" id="plain_input_element"/>
+
+                        <script data-main="/js/config.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js"></script>
+
+                    </div>
+                </div>
             </div>
+
         </div>
-        <p id="case_id" style="display: none">{{id}}</p>
     </div>
 </div>
+
+
 
 <script>
 
@@ -123,6 +142,8 @@
             }
         });
     });
+
+
 
 
 </script>

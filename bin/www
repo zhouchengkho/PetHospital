@@ -1,8 +1,16 @@
 #!/usr/bin/env node
 var app = require('../app');
-
+var SocketIOFileUploadServer = require("socketio-file-upload");
+var uploader = require('../service/uploader');
 app.set('port', process.env.PORT || 3000);
+app.use(SocketIOFileUploadServer.router);
 
 var server = app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + server.address().port);
 });
+
+
+var io = require('socket.io')(server);
+
+
+io.sockets.on("connection", uploader);
