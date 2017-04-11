@@ -9,8 +9,7 @@ require(["socket.io", "SocketIOFileUpload"], function (io, SocketIOFileUpload) {
 	// jQuery version
 	function flash(message){
 
-    $.toaster({priority: 'success', title: 'Success', message: message});
-
+	  $('#progress').text(message);
   }
 
   //获取url中的参数
@@ -49,6 +48,7 @@ require(["socket.io", "SocketIOFileUpload"], function (io, SocketIOFileUpload) {
   var spinner;
 	uploader.addEventListener("complete", function(event){
 		console.log(event);
+    $('#clip').html('<video src="/video/'+ getUrlParam('id')+'.mp4" style="width: 600px;" autoplay loop></video>')
 		flash("Upload Complete: "+event.file.name);
 
     spinner.stop();
@@ -66,7 +66,7 @@ require(["socket.io", "SocketIOFileUpload"], function (io, SocketIOFileUpload) {
 
 	});
 	uploader.addEventListener("progress", function(event){
-		// console.log(event);
+    flash( (event.bytesLoaded/event.file.size) * 100 + '%');
     // $.toaster({priority: 'success', title: 'Success', message: "File is" + event.bytesLoaded/event.file.size*100 + "percent loaded"});
 
 	});

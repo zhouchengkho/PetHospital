@@ -66,8 +66,11 @@
                 </div>
                 <div class="tab-pane about" id="video">
                     <div>
-                        <video src="/video/{{id}}.mp4" style="width: 600px;" autoplay></video>
+                        <div id="clip">
+                            <video src="/video/{{id}}.mp4" style="width: 600px;" autoplay loop></video>
+                        </div>
                         <div id="spinner"></div>
+                        <p id="progress"></p>
                     </div>
                     <div>
                         <button id="ul_btn">Select File</button>

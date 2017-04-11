@@ -179,6 +179,7 @@ router.get('/case', (req, res) => {
         request.get({
             url: baseUrl + '/case?id=' + req.query.id
         }, (err, httpResponse, body) => {
+          console.log(JSON.parse(body).data[0])
             res.render('case', JSON.parse(body).data[0]);
         });
     } else {//when id is undefined
